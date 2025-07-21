@@ -1,6 +1,5 @@
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import profileImage from 'lovable-uploads/43c8db34-22ca-4726-80fb-e95c80b7ed93.png';
 import { motion } from "framer-motion";
 
 const Hero = () => {

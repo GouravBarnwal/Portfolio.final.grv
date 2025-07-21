@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import profileImg from 'lovable-uploads/43c8db34-22ca-4726-80fb-e95c80b7ed93.png';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +47,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center gap-3 cursor-pointer group">
             <img
-              src={profileImg}
+              src="/lovable-uploads/43c8db34-22ca-4726-80fb-e95c80b7ed93.png"
               alt="Logo"
               className="w-10 h-10 rounded-full border-2 border-primary shadow-orange-glow group-hover:scale-110 group-hover:shadow-lg transition-transform duration-300"
             />
