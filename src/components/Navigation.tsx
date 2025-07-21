@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import profileImg from '/lovable-uploads/43c8db34-22ca-4726-80fb-e95c80b7ed93.png';
+import profileImg from 'lovable-uploads/43c8db34-22ca-4726-80fb-e95c80b7ed93.png';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +73,7 @@ const Navigation = () => {
           {/* Download CV Button */}
           <div className="hidden md:block">
             <a
-              href="/lovable-uploads/Gourav_Barnwal_Developer.%20pdf.pdf"
+              href="lovable-uploads/Gourav_Barnwal_Developer. pdf.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >

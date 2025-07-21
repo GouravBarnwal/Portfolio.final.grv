@@ -40,15 +40,15 @@ const Projects = () => {
 
   // Carousel images for Student Attendance Monitoring System
   const samsImages = [
-    '/lovable-uploads/Screenshot 2025-07-03 231122.png',
-    '/lovable-uploads/Screenshot 2025-07-03 231144.png',
-    '/lovable-uploads/Screenshot 2025-07-03 231144.png',
-    '/lovable-uploads/Screenshot 2025-07-03 231154.png',
-    '/lovable-uploads/Screenshot 2025-07-03 231836.png',
-    '/lovable-uploads/Screenshot 2025-07-03 232001.png',
-    '/lovable-uploads/Screenshot 2025-07-03 232001.png',
-    '/lovable-uploads/Screenshot 2025-07-21 030853.png',
-    '/lovable-uploads/Screenshot 2025-07-21 031003.png',
+    'lovable-uploads/Screenshot 2025-07-03 231122.png',
+    'lovable-uploads/Screenshot 2025-07-03 231144.png',
+    'lovable-uploads/Screenshot 2025-07-03 231144.png',
+    'lovable-uploads/Screenshot 2025-07-03 231154.png',
+    'lovable-uploads/Screenshot 2025-07-03 231836.png',
+    'lovable-uploads/Screenshot 2025-07-03 232001.png',
+    'lovable-uploads/Screenshot 2025-07-03 232001.png',
+    'lovable-uploads/Screenshot 2025-07-21 030853.png',
+    'lovable-uploads/Screenshot 2025-07-21 031003.png',
   ];
   const [samsIndex, setSamsIndex] = useState(0);
   useEffect(() => {
@@ -68,8 +68,8 @@ const Projects = () => {
 
   // Carousel images for GigaNEWS - React News Portal
   const gigaNewsImages = [
-    '/lovable-uploads/Screenshot 2025-07-21 014631.png',
-    '/lovable-uploads/Screenshot 2025-07-21 031354.png',
+    'lovable-uploads/Screenshot 2025-07-21 014631.png',
+    'lovable-uploads/Screenshot 2025-07-21 031354.png',
   ];
   const [gigaIndex, setGigaIndex] = useState(0);
   useEffect(() => {
