@@ -88,7 +88,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="section-padding bg-surface/50 relative overflow-hidden">
+    <section id="projects" className="section-padding bg-surface/50 relative">
       {/* Animated background shapes for extra flair */}
       <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[80vw] h-64 z-0 pointer-events-none">
         <div className="absolute w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-blob2" style={{ left: '-10%', top: '10%' }} />

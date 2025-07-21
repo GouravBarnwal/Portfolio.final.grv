@@ -11,7 +11,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="section-padding pt-24 relative overflow-hidden bg-gradient-hero">
+    <section id="home" className="section-padding pt-24 relative bg-gradient-hero">
       {/* Animated background shapes */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120vw] h-[60vh] z-0 pointer-events-none">
         <div className="absolute w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-blob1" style={{ left: '-10%', top: '10%' }} />

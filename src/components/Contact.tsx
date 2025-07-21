@@ -94,7 +94,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-surface/60 to-background/80 relative overflow-hidden">
+    <section id="contact" className="section-padding bg-gradient-to-b from-surface/60 to-background/80 relative">
       {/* Animated background shapes for extra flair */}
       <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[80vw] h-64 z-0 pointer-events-none">
         <div className="absolute w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-blob1" style={{ left: '-10%', top: '10%' }} />
