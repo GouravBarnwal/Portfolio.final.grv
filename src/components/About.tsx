@@ -8,7 +8,7 @@ const About = () => {
     backend: ['Node.js', 'Express.js', 'REST APIs'],
     database: ['MongoDB', 'Firebase'],
     tools: ['Git', 'GitHub', 'Netlify', 'Jupyter'],
-    languages: ['Python', 'JavaScript']
+    languages: ['Python', 'Java']
   };
 
   const experiences = [
@@ -118,7 +118,7 @@ const About = () => {
                   <h4 className="font-medium text-lg capitalize mb-1">
                     {category.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                   </h4>
-                  <div className="flex flex-wrap gap-2 w-full">
+                  <div className="flex flex-wrap gap-2 w-full min-w-0">
                     {skillList.map((skill, j) => {
                       // Random direction for each skill
                       const directions = [
@@ -135,7 +135,7 @@ const About = () => {
                           whileInView={{ opacity: 1, scale: 1, x: 0, y: 0, rotate: 0 }}
                           transition={{ duration: 0.7, delay: j * 0.09, type: 'spring', bounce: 0.5 }}
                           viewport={{ once: true, amount: 0.7 }}
-                          className="skill-tag relative overflow-hidden"
+                          className="skill-tag relative overflow-hidden break-words"
                         >
                           {skill}
                           <span className="absolute left-0 bottom-0 h-1 bg-primary/60 animate-skill-bar" style={{ width: `${80 - i * 10 - j * 5}%`, animationDelay: `${j * 100}ms` }}></span>
