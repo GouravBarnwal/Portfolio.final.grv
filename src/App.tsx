@@ -18,7 +18,7 @@ const App = () => {
   return (
     <>
       <div className="particle-bg">
-        <Particles
+        {/* <Particles
           id="tsparticles"
           init={particlesInit}
           options={{
@@ -39,7 +39,7 @@ const App = () => {
             },
             detectRetina: true,
           }}
-        />
+        /> */}
       </div>
       <div className="tech-bg">
         <svg className="blob1" viewBox="0 0 400 400"><ellipse cx="200" cy="200" rx="200" ry="200" /></svg>
