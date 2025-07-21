@@ -47,7 +47,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center gap-3 cursor-pointer group">
             <img
-              src="/lovable-uploads/43c8db34-22ca-4726-80fb-e95c80b7ed93.png"
+              src="/imagesmine/43c8db34-22ca-4726-80fb-e95c80b7ed93.webp"
               alt="Logo"
               className="w-10 h-10 rounded-full border-2 border-primary shadow-orange-glow group-hover:scale-110 group-hover:shadow-lg transition-transform duration-300"
             />
