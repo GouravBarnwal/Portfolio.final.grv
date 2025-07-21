@@ -52,8 +52,8 @@ const Contact = () => {
     {
       icon: Instagram,
       label: "Instagram",
-      username: "ur_buddy_1419",
-      link: "https://instagram.com/ur_buddy_1419"
+      username: "ur_buddy_1419_",
+      link: "https://www.instagram.com/ur_buddy_1419_/profilecard/?igsh=Zm03Nzd3MzZhbmF5"
     }
   ];
 
