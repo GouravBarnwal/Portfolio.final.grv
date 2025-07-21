@@ -19,7 +19,7 @@ const Index = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0 }}
         variants={sectionVariants}
       >
         <Hero />
@@ -39,7 +39,7 @@ const Index = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0 }}
         variants={sectionVariants}
       >
         <About />
@@ -59,7 +59,7 @@ const Index = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0 }}
         variants={sectionVariants}
       >
         <Projects />
@@ -79,7 +79,7 @@ const Index = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0 }}
         variants={sectionVariants}
       >
         <Services />
@@ -99,7 +99,7 @@ const Index = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0 }}
         variants={sectionVariants}
       >
         <Contact />
