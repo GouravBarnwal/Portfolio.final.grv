@@ -64,35 +64,6 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
-      toast({
-        title: "Please fill in all fields",
-        description: "All fields are required to send your message.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Create mailto link
-    const subject = `Message from ${formData.name}`;
-    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    const mailtoLink = `mailto:barnwalgourav547@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    window.location.href = mailtoLink;
-    
-    toast({
-      title: "Message ready to send!",
-      description: "Your email client should open with the message ready to send."
-    });
-
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-  };
-
   return (
     <section id="contact" className="section-padding bg-gradient-to-b from-surface/60 to-background/80 relative">
       {/* Animated background shapes for extra flair */}
@@ -189,7 +160,7 @@ const Contact = () => {
           >
             <Card className="card-elegant animate-slide-up delay-200">
               <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form action="https://formspree.io/f/mblkdwoj" method="POST" className="space-y-6">
                   <div className="space-y-2">
                     <h3 className="text-xl font-semibold">Send me a message</h3>
                     <p className="text-muted-foreground text-sm">

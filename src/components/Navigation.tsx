@@ -72,9 +72,10 @@ const Navigation = () => {
           {/* Download CV Button */}
           <div className="hidden md:block">
             <a
-              href="lovable-uploads/Gourav_Barnwal_Developer. pdf.pdf"
+              href="/imagesmine/Gourav_Barnwal_Developer. pdf.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              download
             >
               <Button className="btn-accent shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300">
                 Download CV
@@ -107,9 +108,17 @@ const Navigation = () => {
                 </button>
               ))}
               <div className="mt-4 px-4">
-                <Button className="btn-accent w-full shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300">
-                  Download CV
-                </Button>
+                <a
+                  href="/imagesmine/Gourav_Barnwal_Developer. pdf.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="block w-full"
+                >
+                  <Button className="btn-accent w-full shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300">
+                    Download CV
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
