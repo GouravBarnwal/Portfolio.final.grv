@@ -131,7 +131,7 @@ const About = () => {
                       return (
                         <span
                           key={skill}
-                          className="skill-tag relative overflow-hidden break-words text-xs md:text-sm"
+                          className="skill-tag relative overflow-hidden break-words text-xs md:text-sm animate-skill-float-x"
                         >
                           {skill}
                           <span className="absolute left-0 bottom-0 h-1 bg-primary/60 animate-skill-bar" style={{ width: `${80 - i * 10 - j * 5}%`, animationDelay: `${j * 100}ms` }}></span>
