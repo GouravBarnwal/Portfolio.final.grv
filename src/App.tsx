@@ -25,7 +25,7 @@ const App = () => {
   }, []);
   return (
     <>
-      <div className="particle-bg">
+      {/* <div className="particle-bg">
         {isDesktop && (
           <Suspense fallback={null}>
             <Particles
@@ -58,7 +58,7 @@ const App = () => {
         <svg className="blob3" viewBox="0 0 300 300"><ellipse cx="150" cy="150" rx="150" ry="150" /></svg>
         <svg className="line1" viewBox="0 0 600 20"><line x1="0" y1="10" x2="600" y2="10" /></svg>
         <svg className="line2" viewBox="0 0 500 20"><line x1="0" y1="10" x2="500" y2="10" /></svg>
-      </div>
+      </div> */}
       {/* Main App Content */}
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>

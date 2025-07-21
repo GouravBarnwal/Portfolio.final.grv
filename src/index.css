@@ -230,6 +230,11 @@
     @apply bg-surface border border-border rounded-lg px-4 py-2;
     @apply text-sm font-medium text-foreground/90;
     @apply hover:border-primary/50 hover:bg-primary/10 hover:text-primary transition-all duration-300;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .skill-tag:hover {
+    box-shadow: 0 2px 8px 0 hsl(265 90% 60% / 0.15);
+    transform: scale(1.06);
   }
 
   /* Techy animated background shapes */
@@ -295,117 +300,117 @@
     0%, 100% { transform: scale(1) translateY(0); }
     50% { transform: scale(1.1) translateY(-20px); }
   }
-  .animate-blob1 { animation: blob1 8s ease-in-out infinite; }
+  .animate-blob1 { animation: blob1 16s ease-in-out infinite; }
 
   @keyframes blob2 {
     0%, 100% { transform: scale(1) translateY(0); }
     50% { transform: scale(1.08) translateY(16px); }
   }
-  .animate-blob2 { animation: blob2 7s ease-in-out infinite; }
+  .animate-blob2 { animation: blob2 14s ease-in-out infinite; }
 
   @keyframes blob3 {
     0%, 100% { transform: scale(1) translateY(0); }
     50% { transform: scale(1.12) translateY(-12px); }
   }
-  .animate-blob3 { animation: blob3 9s ease-in-out infinite; }
+  .animate-blob3 { animation: blob3 18s ease-in-out infinite; }
 
   @keyframes glow {
     0%, 100% { box-shadow: 0 0 32px hsl(265 90% 60% / 0.3); }
     50% { box-shadow: 0 0 48px hsl(285 80% 65% / 0.5); }
   }
-  .animate-glow { animation: glow 2.5s ease-in-out infinite; }
+  .animate-glow { animation: glow 5s ease-in-out infinite; }
 
   @keyframes hero-float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-16px); }
   }
-  .animate-hero-float { animation: hero-float 5s ease-in-out infinite; }
+  .animate-hero-float { animation: hero-float 10s ease-in-out infinite; }
 
   @keyframes bounce-in {
     0% { opacity: 0; transform: scale(0.8) translateY(40px); }
     60% { opacity: 1; transform: scale(1.05) translateY(-8px); }
     100% { opacity: 1; transform: scale(1) translateY(0); }
   }
-  .animate-bounce-in { animation: bounce-in 0.8s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-bounce-in { animation: bounce-in 1.6s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes social-fade {
     0% { opacity: 0; transform: translateY(24px); }
     100% { opacity: 1; transform: translateY(0); }
   }
-  .animate-social-fade { animation: social-fade 1s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-social-fade { animation: social-fade 2s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes slide-up {
     0% { opacity: 0; transform: translateY(40px); }
     100% { opacity: 1; transform: translateY(0); }
   }
-  .animate-slide-up { animation: slide-up 0.8s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-slide-up { animation: slide-up 1.6s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes fade-in {
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
-  .animate-fade-in { animation: fade-in 1s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-fade-in { animation: fade-in 2s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes timeline-fade-in {
     0% { opacity: 0; transform: translateX(-32px); }
     100% { opacity: 1; transform: translateX(0); }
   }
-  .animate-timeline-fade-in { animation: timeline-fade-in 0.9s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-timeline-fade-in { animation: timeline-fade-in 1.8s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes skill-fade-in {
     0% { opacity: 0; transform: scale(0.95); }
     100% { opacity: 1; transform: scale(1); }
   }
-  .animate-skill-fade-in { animation: skill-fade-in 0.7s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-skill-fade-in { animation: skill-fade-in 1.4s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes skill-bar {
     0% { width: 0; }
     100% { width: var(--tw-skill-bar-width, 80%); }
   }
-  .animate-skill-bar { animation: skill-bar 1.2s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-skill-bar { animation: skill-bar 2.4s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes project-fade-in {
     0% { opacity: 0; transform: translateY(32px) scale(0.98); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
-  .animate-project-fade-in { animation: project-fade-in 0.9s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-project-fade-in { animation: project-fade-in 1.8s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes emoji-bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-12px) scale(1.08); }
   }
-  .animate-emoji-bounce { animation: emoji-bounce 2.5s ease-in-out infinite; }
+  .animate-emoji-bounce { animation: emoji-bounce 5s ease-in-out infinite; }
 
   @keyframes tech-fade-in {
     0% { opacity: 0; transform: scale(0.9); }
     100% { opacity: 1; transform: scale(1); }
   }
-  .animate-tech-fade-in { animation: tech-fade-in 0.7s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-tech-fade-in { animation: tech-fade-in 1.4s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes feature-fade-in {
     0% { opacity: 0; transform: translateX(-16px); }
     100% { opacity: 1; transform: translateX(0); }
   }
-  .animate-feature-fade-in { animation: feature-fade-in 0.7s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-feature-fade-in { animation: feature-fade-in 1.4s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes service-fade-in {
     0% { opacity: 0; transform: translateY(32px) scale(0.98); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
-  .animate-service-fade-in { animation: service-fade-in 0.9s cubic-bezier(0.4,0,0.2,1) both; }
+  .animate-service-fade-in { animation: service-fade-in 1.8s cubic-bezier(0.4,0,0.2,1) both; }
 
   @keyframes icon-bounce {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.15); }
   }
-  .animate-icon-bounce { animation: icon-bounce 2.2s ease-in-out infinite; }
+  .animate-icon-bounce { animation: icon-bounce 4.4s ease-in-out infinite; }
 
   @keyframes input-focus {
     0% { box-shadow: 0 0 0 0 hsl(265 90% 60% / 0.0); }
     100% { box-shadow: 0 0 0 4px hsl(265 90% 60% / 0.15); }
   }
   .animate-input-focus:focus {
-    animation: input-focus 0.5s cubic-bezier(0.4,0,0.2,1) both;
+    animation: input-focus 1s cubic-bezier(0.4,0,0.2,1) both;
   }
 
   /* Animated gradient text for headings */
@@ -416,7 +421,7 @@
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    animation: gradient-move 3s linear infinite alternate;
+    animation: gradient-move 6s linear infinite alternate;
   }
   @keyframes gradient-move {
     0% { background-position: 0% 50%; }

@@ -1,6 +1,39 @@
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
+
+// Typewriter hook
+function useTypewriter(words: string[], speed = 120, eraseSpeed = 60, delay = 1200) {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [forward, setForward] = useState(true);
+  const [display, setDisplay] = useState('');
+
+  useEffect(() => {
+    if (forward && subIndex < words[index].length) {
+      const timeout = setTimeout(() => {
+        setDisplay(words[index].slice(0, subIndex + 1));
+        setSubIndex(subIndex + 1);
+      }, speed);
+      return () => clearTimeout(timeout);
+    } else if (forward && subIndex === words[index].length) {
+      const timeout = setTimeout(() => setForward(false), delay);
+      return () => clearTimeout(timeout);
+    } else if (!forward && subIndex > 0) {
+      const timeout = setTimeout(() => {
+        setDisplay(words[index].slice(0, subIndex - 1));
+        setSubIndex(subIndex - 1);
+      }, eraseSpeed);
+      return () => clearTimeout(timeout);
+    } else if (!forward && subIndex === 0) {
+      setForward(true);
+      setIndex((index + 1) % words.length);
+    }
+  }, [words, index, subIndex, forward, speed, eraseSpeed, delay]);
+
+  return display;
+}
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -9,6 +42,10 @@ const Hero = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const subtitle = useTypewriter([
+    'Full Stack Developer',
+    'AIML Learner',
+  ]);
 
   return (
     <section id="home" className="section-padding pt-24 relative bg-gradient-hero">
@@ -18,7 +55,7 @@ const Hero = () => {
         <div className="absolute w-72 h-72 bg-accent/20 rounded-full blur-2xl animate-blob2" style={{ right: '-8%', top: '30%' }} />
         <div className="absolute w-60 h-60 bg-primary/20 rounded-full blur-2xl animate-blob3" style={{ left: '30%', bottom: '-10%' }} />
       </div>
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 flex flex-col md:flex-row items-center justify-between">
         <div className="w-full max-w-4xl mx-auto animate-fade-in">
           {/* Content */}
           <div className="space-y-8 text-center md:text-left">
@@ -27,8 +64,8 @@ const Hero = () => {
               <h1 className="heading-primary animated-gradient-text">
                 Gourav Barnwal
               </h1>
-              <h2 className="text-2xl md:text-3xl font-medium animated-gradient-text">
-                Full Stack Developer / AIML Learner
+              <h2 className="text-2xl md:text-3xl font-medium animated-gradient-text min-h-[2.5rem]">
+                {subtitle}
               </h2>
             </div>
 
@@ -39,37 +76,23 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.7, y: 40 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.7, type: 'spring', bounce: 0.5 }}
-                viewport={{ once: true, amount: 0.7 }}
+              <Button 
+                className="btn-primary px-8 py-3 shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300"
+                onClick={() => scrollToSection('projects')}
               >
-                <Button 
-                  className="btn-primary px-8 py-3 shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300"
-                  onClick={() => scrollToSection('projects')}
-                >
-                  View Portfolio
-                </Button>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.7, y: 40 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.15, type: 'spring', bounce: 0.5 }}
-                viewport={{ once: true, amount: 0.7 }}
+                View Portfolio
+              </Button>
+              <Button 
+                variant="outline"
+                className="px-8 py-3 border-2 border-primary text-primary hover:bg-primary/10 hover:scale-105 active:scale-95 transition-transform duration-300"
+                onClick={() => scrollToSection('contact')}
               >
-                <Button 
-                  variant="outline"
-                  className="px-8 py-3 border-2 border-primary text-primary hover:bg-primary/10 hover:scale-105 active:scale-95 transition-transform duration-300"
-                  onClick={() => scrollToSection('contact')}
-                >
-                  Get In Touch
-                </Button>
-              </motion.div>
+                Get In Touch
+              </Button>
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4 pt-4 justify-center md:justify-start">
+            <div className="flex items-center gap-4 pt-4 justify-center md:justify-start animate-hero-float">
               <a 
                 href="https://github.com/GouravBarnwal" 
                 target="_blank" 
@@ -100,6 +123,15 @@ const Hero = () => {
               <span>Dhanbad, Jharkhand, India</span>
             </div>
           </div>
+        </div>
+        {/* Animated image on the right */}
+        <div className="hidden md:block flex-shrink-0 relative">
+          <img
+            src="/imagesmine/WhatsApp_Image_2025-07-21_at_14.15.15_a43d61ad-removebg-preview.png"
+            alt="Hero Visual"
+            className="w-72 h-auto object-contain animate-hero-float"
+            style={{ maxHeight: 350 }}
+          />
         </div>
       </div>
     </section>

@@ -115,7 +115,7 @@ const About = () => {
             <div className="space-y-6">
               {Object.entries(skills).map(([category, skillList], i) => (
                 <div key={category} className="space-y-3">
-                  <h4 className="font-medium text-lg capitalize">
+                  <h4 className="font-medium text-lg capitalize mb-1">
                     {category.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                   </h4>
                   <div className="flex flex-wrap gap-2">

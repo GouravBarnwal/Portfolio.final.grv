@@ -40,21 +40,21 @@ const Projects = () => {
 
   // Carousel images for Student Attendance Monitoring System
   const samsImages = [
-    'lovable-uploads/Screenshot 2025-07-03 231122.png',
-    'lovable-uploads/Screenshot 2025-07-03 231144.png',
-    'lovable-uploads/Screenshot 2025-07-03 231144.png',
-    'lovable-uploads/Screenshot 2025-07-03 231154.png',
-    'lovable-uploads/Screenshot 2025-07-03 231836.png',
-    'lovable-uploads/Screenshot 2025-07-03 232001.png',
-    'lovable-uploads/Screenshot 2025-07-03 232001.png',
-    'lovable-uploads/Screenshot 2025-07-21 030853.png',
-    'lovable-uploads/Screenshot 2025-07-21 031003.png',
+    'imagesmine/Screenshot 2025-07-03 231122.png',
+    'imagesmine/Screenshot 2025-07-03 231144.png',
+    'imagesmine/Screenshot 2025-07-03 231144.png',
+    'imagesmine/Screenshot 2025-07-03 231154.png',
+    'imagesmine/Screenshot 2025-07-03 231836.png',
+    'imagesmine/Screenshot 2025-07-03 232001.png',
+    'imagesmine/Screenshot 2025-07-03 232001.png',
+    'imagesmine/Screenshot 2025-07-21 030853.png',
+    'imagesmine/Screenshot 2025-07-21 031003.png',
   ];
   const [samsIndex, setSamsIndex] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
       setSamsIndex((prev) => (prev + 1) % samsImages.length);
-    }, 2000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [samsImages.length]);
   const handlePrev = (e: React.MouseEvent) => {
@@ -68,14 +68,14 @@ const Projects = () => {
 
   // Carousel images for GigaNEWS - React News Portal
   const gigaNewsImages = [
-    'lovable-uploads/Screenshot 2025-07-21 014631.png',
-    'lovable-uploads/Screenshot 2025-07-21 031354.png',
+    'imagesmine/Screenshot 2025-07-21 014631.png',
+    'imagesmine/Screenshot 2025-07-21 031354.png',
   ];
   const [gigaIndex, setGigaIndex] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
       setGigaIndex((prev) => (prev + 1) % gigaNewsImages.length);
-    }, 2000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [gigaNewsImages.length]);
   const handleGigaPrev = (e: React.MouseEvent) => {
@@ -107,22 +107,6 @@ const Projects = () => {
             <div
               key={index}
               className="tilt-card"
-              onMouseMove={e => {
-                const card = e.currentTarget;
-                const inner = card.querySelector('.tilt-card-inner');
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * 10;
-                const rotateY = ((x - centerX) / centerX) * 10;
-                if (inner) (inner as HTMLElement).style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
-              }}
-              onMouseLeave={e => {
-                const inner = e.currentTarget.querySelector('.tilt-card-inner');
-                if (inner) (inner as HTMLElement).style.transform = '';
-              }}
               style={{ perspective: '900px' }}
             >
               <div className="tilt-card-inner card-elegant group relative overflow-visible animate-project-fade-in" style={{ animationDelay: `${index * 120}ms` }}>

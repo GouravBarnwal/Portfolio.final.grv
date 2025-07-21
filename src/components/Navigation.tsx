@@ -52,7 +52,7 @@ const Navigation = () => {
               className="w-10 h-10 rounded-full border-2 border-primary shadow-orange-glow group-hover:scale-110 group-hover:shadow-lg transition-transform duration-300"
             />
             <span className="text-xl font-bold text-primary tracking-tight group-hover:text-accent transition-colors duration-300">
-              Gourav Barnwal
+              Gourav's Portfolio
             </span>
           </div>
 

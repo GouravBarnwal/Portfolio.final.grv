@@ -33,6 +33,14 @@
   }
 }
 
+@keyframes updown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-24px); }
+}
+.animate-updown {
+  animation: updown 2.5s ease-in-out infinite;
+}
+
 .card {
   padding: 2em;
 }
