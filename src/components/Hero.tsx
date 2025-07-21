@@ -69,6 +69,16 @@ const Hero = () => {
               </h2>
             </div>
 
+            {/* Hero Image below subtitle */}
+            <div className="flex-shrink-0 relative mx-auto mt-8">
+              <img
+                src="/imagesmine/WhatsApp_Image_2025-07-21_at_14.15.15_a43d61ad-removebg-preview.png"
+                alt="Hero Visual"
+                className="w-72 h-auto object-contain animate-hero-float"
+                style={{ maxHeight: 350 }}
+              />
+            </div>
+
             <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto md:mx-0">
               Passionate developer specializing in full-stack web development, crafting seamless solutions with modern technologies. 
               Currently pursuing Computer Science Engineering while building tomorrow's web applications.
@@ -123,15 +133,6 @@ const Hero = () => {
               <span>Dhanbad, Jharkhand, India</span>
             </div>
           </div>
-        </div>
-        {/* Animated image on the right */}
-        <div className="flex-shrink-0 relative mx-auto mt-8">
-          <img
-            src="/imagesmine/WhatsApp_Image_2025-07-21_at_14.15.15_a43d61ad-removebg-preview.png"
-            alt="Hero Visual"
-            className="w-72 h-auto object-contain animate-hero-float"
-            style={{ maxHeight: 350 }}
-          />
         </div>
       </div>
     </section>
