@@ -118,7 +118,7 @@ const About = () => {
                   <h4 className="font-medium text-lg capitalize mb-1">
                     {category.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 w-full">
                     {skillList.map((skill, j) => {
                       // Random direction for each skill
                       const directions = [
