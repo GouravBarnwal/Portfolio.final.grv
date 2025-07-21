@@ -27,17 +27,16 @@ const App = () => {
               fullScreen: false,
               background: { color: "transparent" },
               particles: {
-                number: { value: 60, density: { enable: true, value_area: 800 } },
+                number: { value: 10, density: { enable: true, value_area: 800 } },
                 color: { value: ["#a259ff", "#5f5fff", "#00e0ff"] },
                 shape: { type: "circle" },
-                opacity: { value: 0.3, random: true },
-                size: { value: 3, random: { enable: true, minimumValue: 1 } },
-                move: { enable: true, speed: 1.2, direction: "none", random: false, straight: false, outModes: { default: "out" } },
-                links: { enable: true, color: "#a259ff", distance: 120, opacity: 0.2, width: 1 },
+                opacity: { value: 0.2, random: true },
+                size: { value: 2, random: { enable: true, minimumValue: 1 } },
+                move: { enable: true, speed: 0.8, direction: "none", random: false, straight: false, outModes: { default: "out" } },
+                links: { enable: false },
               },
               interactivity: {
-                events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" } },
-                modes: { repulse: { distance: 100, duration: 0.4 }, push: { quantity: 4 } },
+                events: { onHover: { enable: false }, onClick: { enable: false } },
               },
               detectRetina: true,
             }}
