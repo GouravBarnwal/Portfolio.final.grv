@@ -49,7 +49,7 @@ const Footer = () => {
                 <Linkedin size={20} />
               </a>
               <a 
-                href="https://instagram.com/ur_buddy_1419"
+                href="https://www.instagram.com/ur_buddy_1419_/profilecard/?igsh=Zm03Nzd3MzZhbmF5"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-background rounded-lg hover:bg-primary/10 transition-colors"
