@@ -36,9 +36,9 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full min-w-0">
           {/* Personal Bio */}
-          <div className="space-y-8 animate-slide-up">
+          <div className="space-y-8 animate-slide-up w-full min-w-0">
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -109,7 +109,7 @@ const About = () => {
           </div>
 
           {/* Skills */}
-          <div className="space-y-8 animate-slide-up">
+          <div className="space-y-8 animate-slide-up w-full min-w-0">
             <h3 className="text-2xl font-semibold">Technical Skills</h3>
             
             <div className="space-y-6">
@@ -129,17 +129,13 @@ const About = () => {
                       ];
                       const dir = directions[(i * 3 + j) % directions.length];
                       return (
-                        <motion.span
+                        <span
                           key={skill}
-                          initial={{ opacity: 0, scale: 0.6, x: dir.x, y: dir.y, rotate: dir.rotate }}
-                          whileInView={{ opacity: 1, scale: 1, x: 0, y: 0, rotate: 0 }}
-                          transition={{ duration: 0.7, delay: j * 0.09, type: 'spring', bounce: 0.5 }}
-                          viewport={{ once: true, amount: 0.7 }}
-                          className="skill-tag relative overflow-hidden break-words"
+                          className="skill-tag relative overflow-hidden break-words text-xs md:text-sm"
                         >
                           {skill}
                           <span className="absolute left-0 bottom-0 h-1 bg-primary/60 animate-skill-bar" style={{ width: `${80 - i * 10 - j * 5}%`, animationDelay: `${j * 100}ms` }}></span>
-                        </motion.span>
+                        </span>
                       );
                     })}
                   </div>

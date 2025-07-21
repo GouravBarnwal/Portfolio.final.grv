@@ -125,7 +125,7 @@ const Hero = () => {
           </div>
         </div>
         {/* Animated image on the right */}
-        <div className="hidden md:block flex-shrink-0 relative">
+        <div className="flex-shrink-0 relative mx-auto mt-8">
           <img
             src="/imagesmine/WhatsApp_Image_2025-07-21_at_14.15.15_a43d61ad-removebg-preview.png"
             alt="Hero Visual"
