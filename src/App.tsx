@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import React, { useCallback, lazy, Suspense } from "react";
+import React, { useCallback, lazy, Suspense, useState, useEffect } from "react";
 import { loadFull } from "tsparticles";
 
 const queryClient = new QueryClient();
@@ -13,35 +13,44 @@ const queryClient = new QueryClient();
 const Particles = lazy(() => import("react-tsparticles"));
 
 const App = () => {
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const checkWidth = () => setIsDesktop(window.innerWidth > 768);
+    checkWidth();
+    window.addEventListener('resize', checkWidth);
+    return () => window.removeEventListener('resize', checkWidth);
+  }, []);
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
   return (
     <>
       <div className="particle-bg">
-        <Suspense fallback={null}>
-          <Particles
-            id="tsparticles"
-            init={particlesInit}
-            options={{
-              fullScreen: false,
-              background: { color: "transparent" },
-              particles: {
-                number: { value: 10, density: { enable: true, value_area: 800 } },
-                color: { value: ["#a259ff", "#5f5fff", "#00e0ff"] },
-                shape: { type: "circle" },
-                opacity: { value: 0.2, random: true },
-                size: { value: 2, random: { enable: true, minimumValue: 1 } },
-                move: { enable: true, speed: 0.8, direction: "none", random: false, straight: false, outModes: { default: "out" } },
-                links: { enable: false },
-              },
-              interactivity: {
-                events: { onHover: { enable: false }, onClick: { enable: false } },
-              },
-              detectRetina: true,
-            }}
-          />
-        </Suspense>
+        {isDesktop && (
+          <Suspense fallback={null}>
+            <Particles
+              id="tsparticles"
+              init={particlesInit}
+              options={{
+                fullScreen: false,
+                background: { color: "transparent" },
+                particles: {
+                  number: { value: 30, density: { enable: true, value_area: 800 } },
+                  color: { value: ["#a259ff", "#5f5fff", "#00e0ff"] },
+                  shape: { type: "circle" },
+                  opacity: { value: 0.12, random: true },
+                  size: { value: 1.5, random: { enable: true, minimumValue: 1 } },
+                  move: { enable: true, speed: 0.5, direction: "none", random: false, straight: false, outModes: { default: "out" } },
+                  links: { enable: false },
+                },
+                interactivity: {
+                  events: { onHover: { enable: false }, onClick: { enable: false } },
+                },
+                detectRetina: true,
+              }}
+            />
+          </Suspense>
+        )}
       </div>
       <div className="tech-bg">
         <svg className="blob1" viewBox="0 0 400 400"><ellipse cx="200" cy="200" rx="200" ry="200" /></svg>
