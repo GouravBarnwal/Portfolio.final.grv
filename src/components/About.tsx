@@ -103,14 +103,21 @@ const About = () => {
                   <Card className="card-elegant">
                     <CardContent className="p-6">
                       <div className="space-y-2">
-                        <div className="flex justify-between items-start">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                           <div>
                             <h4 className="font-semibold text-lg">{exp.title}</h4>
                             <p className="text-primary font-medium">{exp.company}</p>
                           </div>
-                          <div className="text-right">
-                            <span className="text-sm text-muted-foreground block">{exp.duration}</span>
-                            <span className="text-xs text-muted-foreground">{exp.location}</span>
+                          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <Calendar size={14} className="text-primary" />
+                              {exp.duration}
+                            </span>
+                            <span className="hidden sm:inline-block">•</span>
+                            <span className="flex items-center gap-1">
+                              <MapPin size={14} className="text-primary" />
+                              {exp.location}
+                            </span>
                           </div>
                         </div>
                         <p className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: exp.description }} />

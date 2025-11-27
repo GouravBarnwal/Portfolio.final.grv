@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, MapPin, Check } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Check, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
@@ -153,9 +153,19 @@ const Hero = () => {
               >
                 <Linkedin size={20} />
               </a>
-              <div className="relative">
+              <a 
+                href="https://www.instagram.com/grv.b_1419"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-150"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} className="text-foreground" />
+              </a>
+              <div className="relative group">
                 <button 
-                  onClick={async () => {
+                  onClick={async (e) => {
+                    e.preventDefault();
                     try {
                       await navigator.clipboard.writeText('barnwalgourav547@gmail.com');
                       setShowTooltip(true);
@@ -173,22 +183,17 @@ const Hero = () => {
                     }
                   }}
                   className="p-3 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-200 relative"
+                  aria-label={showTooltip ? 'Email copied!' : 'Copy email to clipboard'}
                 >
-                  <Mail size={20} className="text-muted-foreground" />
-                </button>
-                <AnimatePresence>
-                  {showTooltip && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-xs py-1 px-2 rounded whitespace-nowrap flex items-center gap-1"
-                    >
-                      <Check size={12} />
-                      Email Copied!
-                      </motion.div>
+                  {showTooltip ? (
+                    <Check size={20} className="text-green-500" />
+                  ) : (
+                    <Mail size={20} className="text-foreground" />
                   )}
-                </AnimatePresence>
+                </button>
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-foreground text-background text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                  {showTooltip ? 'Copied!' : 'Click to copy email'}
+                </div>
               </div>
             </div>
 

@@ -314,85 +314,87 @@ const Projects = () => {
                     </ul>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 pt-4 mt-auto">
-                    {project.title === "Student Attendance Monitoring System" ? (
-                      <div className="w-full flex justify-center">
-                        <a
-                          href="https://github.com/GouravBarnwal/Students-Attendance-Monitoring-and-Alert-Generation-System.git"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-40"
-                        >
-                          <Button variant="outline" size="sm" className="w-full group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
+                  {/* Action Buttons - Hidden for TickerPulse project */}
+                  {project.title !== "TickerPulse — AI-Powered Stock Sentiment Analysis & Trend Prediction Platform" && (
+                    <div className="flex gap-2 pt-4 mt-auto">
+                      {project.title === "Student Attendance Monitoring System" ? (
+                        <div className="w-full flex justify-center">
+                          <a
+                            href="https://github.com/GouravBarnwal/Students-Attendance-Monitoring-and-Alert-Generation-System.git"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-40"
+                          >
+                            <Button variant="outline" size="sm" className="w-full group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
+                              <Github size={16} className="mr-2" />
+                              Code
+                            </Button>
+                          </a>
+                        </div>
+                      ) : project.title === "GigaNEWS - React News Portal" ? (
+                        <>
+                          <a
+                            href="https://github.com/GouravBarnwal/GigaNEWS.git"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1"
+                          >
+                            <Button variant="outline" size="sm" className="w-full group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
+                              <Github size={16} className="mr-2" />
+                              Code
+                            </Button>
+                          </a>
+                          <a
+                            href="https://gouravbarnwal-giganews.netlify.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1"
+                          >
+                            <Button size="sm" className="w-full group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
+                              <ExternalLink size={16} className="mr-2" />
+                              Demo
+                            </Button>
+                          </a>
+                        </>
+                      ) : project.title === "Deforestation Fire Classification in India Using MODIS Satellite Data" ? (
+                        <>
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1"
+                          >
+                            <Button variant="outline" size="sm" className="w-full group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
+                              <Github size={16} className="mr-2" />
+                              Code
+                            </Button>
+                          </a>
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1"
+                          >
+                            <Button size="sm" className="w-full group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
+                              <ExternalLink size={16} className="mr-2" />
+                              Demo
+                            </Button>
+                          </a>
+                        </>
+                      ) : (
+                        <>
+                          <Button variant="outline" size="sm" className="flex-1 group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
                             <Github size={16} className="mr-2" />
                             Code
                           </Button>
-                        </a>
-                      </div>
-                    ) : project.title === "GigaNEWS - React News Portal" ? (
-                      <>
-                        <a
-                          href="https://github.com/GouravBarnwal/GigaNEWS.git"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1"
-                        >
-                          <Button variant="outline" size="sm" className="w-full group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
-                            <Github size={16} className="mr-2" />
-                            Code
-                          </Button>
-                        </a>
-                        <a
-                          href="https://gouravbarnwal-giganews.netlify.app/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1"
-                        >
-                          <Button size="sm" className="w-full group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
+                          <Button size="sm" className="flex-1 group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
                             <ExternalLink size={16} className="mr-2" />
                             Demo
                           </Button>
-                        </a>
-                      </>
-                    ) : project.title === "Deforestation Fire Classification in India Using MODIS Satellite Data" ? (
-                      <>
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1"
-                        >
-                          <Button variant="outline" size="sm" className="w-full group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
-                            <Github size={16} className="mr-2" />
-                            Code
-                          </Button>
-                        </a>
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1"
-                        >
-                          <Button size="sm" className="w-full group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
-                            <ExternalLink size={16} className="mr-2" />
-                            Demo
-                          </Button>
-                        </a>
-                      </>
-                    ) : (
-                      <>
-                        <Button variant="outline" size="sm" className="flex-1 group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
-                          <Github size={16} className="mr-2" />
-                          Code
-                        </Button>
-                        <Button size="sm" className="flex-1 group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
-                          <ExternalLink size={16} className="mr-2" />
-                          Demo
-                        </Button>
-                      </>
-                    )}
-                  </div>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </div>
             </div>

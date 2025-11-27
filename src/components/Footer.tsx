@@ -1,8 +1,17 @@
-import { Heart, Github, Linkedin, Mail } from 'lucide-react';
+import { Heart, Github, Linkedin, Mail, Check, MapPin } from 'lucide-react';
 import { Instagram } from 'lucide-react';
+import { useState } from 'react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [copied, setCopied] = useState(false);
+
+  const handleEmailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText('barnwalgourav547@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <footer className="bg-surface border-t border-border">
@@ -49,19 +58,26 @@ const Footer = () => {
                 <Linkedin size={20} />
               </a>
               <a 
-                href="https://www.instagram.com/ur_buddy_1419_/profilecard/?igsh=Zm03Nzd3MzZhbmF5"
+                href="https://www.instagram.com/grv.b_1419"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-background rounded-lg hover:bg-primary/10 transition-colors"
+                aria-label="Instagram"
               >
                 <Instagram size={20} />
               </a>
-              <a 
-                href="mailto:barnwalgourav547@gmail.com"
-                className="p-2 bg-background rounded-lg hover:bg-primary/10 transition-colors"
-              >
-                <Mail size={20} />
-              </a>
+              <div className="relative group">
+                <button 
+                  onClick={handleEmailClick}
+                  className="p-2 bg-background rounded-lg hover:bg-primary/10 transition-colors"
+                  aria-label={copied ? 'Email copied!' : 'Copy email to clipboard'}
+                >
+                  {copied ? <Check size={20} className="text-green-500" /> : <Mail size={20} />}
+                </button>
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-foreground text-background text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                  {copied ? 'Copied!' : 'Click to copy email'}
+                </div>
+              </div>
             </div>
             <p className="text-muted-foreground text-sm">
               Feel free to reach out for collaborations or just a friendly chat about technology!
@@ -74,9 +90,12 @@ const Footer = () => {
           <p className="text-muted-foreground text-sm flex items-center gap-1">
             © {currentYear} Gourav Barnwal
           </p>
-          <p className="text-muted-foreground text-sm">
-            Dhanbad, Jharkhand, India
-          </p>
+          <div className="text-muted-foreground text-sm">
+            <div className="flex items-center gap-3 animate-fade-in delay-300">
+              <MapPin size={20} className="text-primary animate-icon-bounce" />
+              <span className="text-sm font-medium text-primary">Dhanbad, Jharkhand, India - 828111</span> 
+            </div>
+          </div>
         </div>
       </div>
     </footer>

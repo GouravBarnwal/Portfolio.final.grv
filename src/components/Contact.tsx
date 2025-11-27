@@ -146,8 +146,8 @@ const Contact = () => {
             </div>
             {/* Location Illustration */}
             <div className="mt-8 flex items-center gap-3 animate-fade-in delay-300">
-              <MapPin size={24} className="text-primary animate-icon-bounce" />
-              <span className="text-lg font-medium text-primary">Dhanbad, Jharkhand, India - 828111</span>
+              {/* <MapPin size={24} className="text-primary animate-icon-bounce" /> */}
+              {/* <span className="text-lg font-medium text-primary">Dhanbad, Jharkhand, India - 828111</span> */}
             </div>
           </div>
 
