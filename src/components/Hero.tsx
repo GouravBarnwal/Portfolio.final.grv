@@ -1,41 +1,70 @@
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import React, { useEffect, useState } from 'react';
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 // Typewriter hook
-function useTypewriter(words: string[], speed = 120, eraseSpeed = 60, delay = 1200) {
-  const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
-  const [forward, setForward] = useState(true);
+function useTypewriter(lines: string[][], speed = 40, lineDelay = 2000) {
+  const [currentLine, setCurrentLine] = useState(0);
+  const [currentWord, setCurrentWord] = useState(0);
   const [display, setDisplay] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isLineComplete, setIsLineComplete] = useState(false);
 
   useEffect(() => {
-    if (forward && subIndex < words[index].length) {
+    const currentLineText = lines[currentLine];
+    const currentWordText = currentLineText[currentWord];
+    
+    if (!isDeleting && display.length < currentWordText.length) {
+      // Typing
       const timeout = setTimeout(() => {
-        setDisplay(words[index].slice(0, subIndex + 1));
-        setSubIndex(subIndex + 1);
+        setDisplay(currentWordText.substring(0, display.length + 1));
       }, speed);
       return () => clearTimeout(timeout);
-    } else if (forward && subIndex === words[index].length) {
-      const timeout = setTimeout(() => setForward(false), delay);
-      return () => clearTimeout(timeout);
-    } else if (!forward && subIndex > 0) {
+    } else if (!isDeleting && display.length === currentWordText.length) {
+      // Word complete, wait then start deleting
+      if (currentWord < currentLineText.length - 1) {
+        const timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, lineDelay);
+        return () => clearTimeout(timeout);
+      } else {
+        // Last word in line, wait longer before going to next line
+        if (!isLineComplete) {
+          const timeout = setTimeout(() => {
+            setIsLineComplete(true);
+            setIsDeleting(true);
+          }, lineDelay * 2);
+          return () => clearTimeout(timeout);
+        }
+      }
+    } else if (isDeleting && display.length > 0) {
+      // Deleting
       const timeout = setTimeout(() => {
-        setDisplay(words[index].slice(0, subIndex - 1));
-        setSubIndex(subIndex - 1);
-      }, eraseSpeed);
+        setDisplay(display.substring(0, display.length - 1));
+      }, speed / 2);
       return () => clearTimeout(timeout);
-    } else if (!forward && subIndex === 0) {
-      setForward(true);
-      setIndex((index + 1) % words.length);
+    } else if (isDeleting && display.length === 0) {
+      // Finished deleting, move to next word or line
+      setIsDeleting(false);
+      if (isLineComplete) {
+        // Move to next line
+        setCurrentLine((currentLine + 1) % lines.length);
+        setCurrentWord(0);
+        setIsLineComplete(false);
+      } else {
+        // Move to next word in line
+        setCurrentWord((currentWord + 1) % currentLineText.length);
+      }
     }
-  }, [words, index, subIndex, forward, speed, eraseSpeed, delay]);
+  }, [display, currentLine, currentWord, isDeleting, isLineComplete, lines, speed, lineDelay]);
 
   return display;
 }
 
 const Hero = () => {
+  const [showTooltip, setShowTooltip] = useState(false);
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -43,8 +72,8 @@ const Hero = () => {
     }
   };
   const subtitle = useTypewriter([
-    'Full Stack Developer',
-    'AIML Learner',
+    ['Full Stack Developer'],
+    ['AIML Learner']
   ]);
 
   return (
@@ -80,18 +109,23 @@ const Hero = () => {
             </div>
 
             <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto md:mx-0">
-              Passionate developer specializing in full-stack web development, crafting seamless solutions with modern technologies. 
-              Currently pursuing Computer Science Engineering while building tomorrow's web applications.
+              Full-stack developer skilled in React.js, FastAPI, Flask, Firebase, and PostgreSQL, with experience building scalable web applications and deploying ML models using Python, Streamlit, and Scikit-learn. Strong focus on clean architecture, UI/UX, data-driven development, and end-to-end product delivery. Passionate about AI, automation, and building high-impact applications.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button 
-                className="btn-primary px-8 py-3 shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300"
-                onClick={() => scrollToSection('projects')}
-              >
-                View Portfolio
-              </Button>
+              <div className="relative">
+                <Button 
+                  className="btn-primary px-8 py-3 shadow-orange-glow hover:shadow-[0_0_32px_hsl(265_90%_60%/0.7)] 
+                    transition-all duration-300 relative overflow-hidden 
+                    hover:scale-105 active:scale-95
+                    hover:animate-[seesaw_1s_ease-in-out_infinite]"
+                  onClick={() => scrollToSection('projects')}
+                >
+                  <span className="relative z-10">View Projects</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </Button>
+              </div>
               <Button 
                 variant="outline"
                 className="px-8 py-3 border-2 border-primary text-primary hover:bg-primary/10 hover:scale-105 active:scale-95 transition-transform duration-300"
@@ -119,18 +153,49 @@ const Hero = () => {
               >
                 <Linkedin size={20} />
               </a>
-              <a 
-                href="mailto:barnwalgourav547@gmail.com"
-                className="p-3 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-200"
-              >
-                <Mail size={20} />
-              </a>
+              <div className="relative">
+                <button 
+                  onClick={async () => {
+                    try {
+                      await navigator.clipboard.writeText('barnwalgourav547@gmail.com');
+                      setShowTooltip(true);
+                      setTimeout(() => setShowTooltip(false), 2000);
+                    } catch (err) {
+                      // Fallback for browsers that don't support clipboard API
+                      const textArea = document.createElement('textarea');
+                      textArea.value = 'barnwalgourav547@gmail.com';
+                      document.body.appendChild(textArea);
+                      textArea.select();
+                      document.execCommand('copy');
+                      document.body.removeChild(textArea);
+                      setShowTooltip(true);
+                      setTimeout(() => setShowTooltip(false), 2000);
+                    }
+                  }}
+                  className="p-3 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-200 relative"
+                >
+                  <Mail size={20} className="text-muted-foreground" />
+                </button>
+                <AnimatePresence>
+                  {showTooltip && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 5 }}
+                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-xs py-1 px-2 rounded whitespace-nowrap flex items-center gap-1"
+                    >
+                      <Check size={12} />
+                      Email Copied!
+                      </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
 
             {/* Location */}
             <div className="flex items-center gap-2 text-muted-foreground justify-center md:justify-start">
               <MapPin size={16} />
-              <span>Dhanbad, Jharkhand, India</span>
+              <span>Dhanbad, Jharkhand, India- 828111</span>
             </div>
           </div>
         </div>

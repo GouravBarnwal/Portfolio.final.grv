@@ -99,6 +99,10 @@ export default {
 					from: { opacity: '0', transform: 'translateY(20px)' },
 					to: { opacity: '1', transform: 'translateY(0)' }
 				},
+				'seesaw': {
+					'0%, 100%': { transform: 'rotate(-1deg) scale(1.05)' },
+					'50%': { transform: 'rotate(1deg) scale(1.05)' }
+				},
 				'slide-up': {
 					from: { opacity: '0', transform: 'translateY(40px)' },
 					to: { opacity: '1', transform: 'translateY(0)' }

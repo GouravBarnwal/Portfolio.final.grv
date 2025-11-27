@@ -129,16 +129,10 @@ const Services = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="mailto:barnwalgourav547@gmail.com"
-                  className="btn-primary px-8 py-3 rounded-lg text-center inline-block animate-bounce-in"
-                >
-                  Start a Project
-                </a>
-                <a 
                   href="#contact"
-                  className="border border-border px-8 py-3 rounded-lg text-center hover:bg-surface transition-colors animate-bounce-in delay-100"
+                  className="btn-primary px-8 py-3 rounded-lg text-center hover:bg-primary/90 transition-colors animate-bounce-in"
                 >
-                  Get in Touch
+                  Contact Me
                 </a>
               </div>
             </CardContent>

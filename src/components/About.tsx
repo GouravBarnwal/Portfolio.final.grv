@@ -4,25 +4,34 @@ import { motion } from "framer-motion";
 
 const About = () => {
   const skills = {
-    frontend: ['React.js', 'JavaScript', 'CSS3', 'Tailwind CSS', 'Bootstrap'],
-    backend: ['Node.js', 'Express.js', 'REST APIs'],
-    database: ['MongoDB', 'Firebase'],
-    tools: ['Git', 'GitHub', 'Netlify', 'Jupyter'],
-    languages: ['Python', 'Java']
+    'Frontend': ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'],
+    'Backend': ['Node.js', 'Express.js', 'FastAPI', 'Flask', 'REST APIs'],
+    'Database': ['PostgreSQL', 'MongoDB', 'Firebase', 'SQL'],
+    'AI/ML': ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'OpenCV', 'TensorFlow'],
+    'Tools': ['Git', 'GitHub', 'VS Code', 'Jupyter']
   };
 
   const experiences = [
     {
-      title: "Software Development Intern",
-      company: "NIAMT Ranchi",
-      duration: "06/2025 - 07/2025",
-      description: "Gained hands-on experience in full-stack web development, working on collaborative software projects and modern web technologies."
+      title: "Software Engineer Intern",
+      company: "Tickerpulse - AI Product Manager Accelerator",
+      duration: "10/2025 - Present",
+      location: "Boston, Massachusetts, USA",
+      description: `• Integrated frontend and backend using React.js and FastAPI enabling smooth API communication.<br/>• Designed and managed PostgreSQL databases, including schema setup and CRUD operations.<br/>• Ensured reliable data flow across the React.js UI, FastAPI backend, and PostgreSQL database.`
     },
     {
-      title: "AI/ML Intern",
-      company: "AICTE x Edunet Foundation x Shell",
-      duration: "07/25 - ongoing",
-      description: `• Analyzed MODIS fire anomaly data (2021–2023) from NASA’s Terra/Aqua satellites to classify fire types in India (vegetation fires, volcanic, static land, offshore), Dataset Area ranges till Jammu-Kashmir.<br/>• Performing exploratory data analysis to understand class imbalance and parameter distributions (e.g., count plots).<br/>• Tools/Tech: Python, Pandas, Seaborn, Scikit-learn, Jupyter, Satellite Data (MODIS).`
+      title: "AI/ML Intern - Classification of Fire Types in India",
+      company: "AICTE × Edunet Foundation × Shell",
+      duration: "07/2025 - 08/2025",
+      location: "Remote",
+      description: `• Analyzed MODIS fire data (2021–2023) to classify fire types (vegetation, static, etc.).<br/>• Performed EDA on class imbalance and spatial distribution.<br/>• Built & deployed an ML app using Python, Streamlit, Scikit-learn, Folium, Pandas.`
+    },
+    {
+      title: "Software Development Intern",
+      company: "National Institute of Advanced Manufacturing Technology (NIAMT), Ranchi",
+      duration: "06/2025 - 07/2025",
+      location: "Ranchi - Hybrid",
+      description: `• Built a full-stack app for attendance automation using React.js, Flask, Firebase.<br/>• Added OTP login, email alerts, SBI Collect integration.<br/>• Implemented role-based access with real-time updates.`
     }
   ];
 
@@ -71,7 +80,7 @@ const About = () => {
                       <div className="flex items-center gap-1">
                         <span className="flex items-center gap-1">
                           <GraduationCap size={16} className="text-primary mr-1" />
-                          3rd Year
+                          Final Year
                         </span>
                       </div>
                     </div>
@@ -95,10 +104,15 @@ const About = () => {
                     <CardContent className="p-6">
                       <div className="space-y-2">
                         <div className="flex justify-between items-start">
-                          <h4 className="font-semibold text-lg">{exp.title}</h4>
-                          <span className="text-sm text-muted-foreground">{exp.duration}</span>
+                          <div>
+                            <h4 className="font-semibold text-lg">{exp.title}</h4>
+                            <p className="text-primary font-medium">{exp.company}</p>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-sm text-muted-foreground block">{exp.duration}</span>
+                            <span className="text-xs text-muted-foreground">{exp.location}</span>
+                          </div>
                         </div>
-                        <p className="text-primary font-medium">{exp.company}</p>
                         <p className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: exp.description }} />
                       </div>
                     </CardContent>

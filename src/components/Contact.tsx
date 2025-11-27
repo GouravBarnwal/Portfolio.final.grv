@@ -52,8 +52,8 @@ const Contact = () => {
     {
       icon: Instagram,
       label: "Instagram",
-      username: "ur_buddy_1419_",
-      link: "https://www.instagram.com/ur_buddy_1419_/profilecard/?igsh=Zm03Nzd3MzZhbmF5"
+      username: "grv.b_1419",
+      link: "https://www.instagram.com/grv.b_1419"
     }
   ];
 
@@ -147,7 +147,7 @@ const Contact = () => {
             {/* Location Illustration */}
             <div className="mt-8 flex items-center gap-3 animate-fade-in delay-300">
               <MapPin size={24} className="text-primary animate-icon-bounce" />
-              <span className="text-lg font-medium text-primary">Dhanbad, Jharkhand, India</span>
+              <span className="text-lg font-medium text-primary">Dhanbad, Jharkhand, India - 828111</span>
             </div>
           </div>
 
