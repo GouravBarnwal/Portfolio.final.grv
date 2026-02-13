@@ -73,7 +73,7 @@ const Hero = () => {
   };
   const subtitle = useTypewriter([
     ['Full Stack Developer'],
-    ['AIML Learner']
+    ['AI/ML Engineer']
   ]);
 
   return (
@@ -100,17 +100,19 @@ const Hero = () => {
 
             {/* Hero Image below subtitle */}
             <div className="flex-shrink-0 relative mx-auto mt-8">
-              <img
-                src="/imagesmine/WhatsApp_Image_2025-07-21_at_14.15.15_a43d61ad-removebg-preview.png"
-                alt="Hero Visual"
-                className="w-72 h-auto object-contain animate-hero-float"
-                style={{ maxHeight: 350 }}
-              />
+              <div className="relative w-80 h-80 md:w-80 md:h-80 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden animate-hero-float flex items-center justify-center">
+                <img
+                  src="public/imagesmine/Grv-prof-img.png"
+                  alt="Hero Visual"
+                  className="w-64 h-64 md:w-64 md:h-64 object-cover scale-110 hover:scale-125 transition-transform duration-500 ease-out"
+                />
+                {/* Add subtle glow effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-transparent to-white/10 pointer-events-none"></div>
+              </div>
             </div>
 
             <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto md:mx-0">
-              Full-stack developer skilled in React.js, FastAPI, Flask, Firebase, and PostgreSQL, with experience building scalable web applications and deploying ML models using Python, Streamlit, and Scikit-learn. Strong focus on clean architecture, UI/UX, data-driven development, and end-to-end product delivery. Passionate about AI, automation, and building high-impact applications.
-            </p>
+Final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, passionate about building practical, real-world software solutions. Experienced in full-stack development and machine learning, with hands-on project and internship exposure in developing scalable applications and data-driven systems.            </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">

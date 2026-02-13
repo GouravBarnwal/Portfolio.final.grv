@@ -65,6 +65,22 @@ const Projects = () => {
       github: "#",
       demo: "#",
       image: "news-app"
+    },
+    {
+      title: "Dr. Maya Reynolds Website Clone",
+      description: <>Pixel-perfect recreation of Dr. Maya Reynolds' professional website using Next.js with modern development practices. Original site: <a href="https://lilac-template.squarespace.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">https://lilac-template.squarespace.com/</a> (password: lilac)</>,
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Responsive Design", "Performance Optimization"],
+      features: [
+        "Pixel-perfect frontend replication",
+        "Modern Next.js architecture",
+        "Responsive design implementation",
+        "Component-based structure",
+        "Performance optimization",
+        "Clean, maintainable code"
+      ],
+      github: "https://github.com/GouravBarnwal/Dr-Maya-Reynold.git",
+      demo: "https://dr-maya-reynolds-beta.vercel.app/",
+      image: "maya-reynolds-clone"
     }
   ];
 
@@ -80,13 +96,31 @@ const Projects = () => {
     'imagesmine/Screenshot 2025-07-21 030853.png',
     'imagesmine/Screenshot 2025-07-21 031003.png',
   ];
+
+  // Carousel images for Dr. Maya Reynolds Website Clone
+  const mayaReynoldsImages = [
+    'imagesmine/Screenshot 2026-02-14 014337.png',
+    'imagesmine/Screenshot 2026-02-14 013751.png',
+    'imagesmine/Screenshot 2026-02-14 013823.png',
+    'imagesmine/Screenshot 2026-02-14 013853.png',
+  ];
   const [samsIndex, setSamsIndex] = useState(0);
+  const [mayaReynoldsIndex, setMayaReynoldsIndex] = useState(0);
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setSamsIndex((prev) => (prev + 1) % samsImages.length);
     }, 4000);
     return () => clearInterval(interval);
   }, [samsImages.length]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMayaReynoldsIndex((prev) => (prev + 1) % mayaReynoldsImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [mayaReynoldsImages.length]);
+  
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     setSamsIndex((prev) => (prev - 1 + samsImages.length) % samsImages.length);
@@ -94,6 +128,15 @@ const Projects = () => {
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     setSamsIndex((prev) => (prev + 1) % samsImages.length);
+  };
+
+  const handleMayaPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setMayaReynoldsIndex((prev) => (prev - 1 + mayaReynoldsImages.length) % mayaReynoldsImages.length);
+  };
+  const handleMayaNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setMayaReynoldsIndex((prev) => (prev + 1) % mayaReynoldsImages.length);
   };
 
   // Carousel images for Fire Classification Project
@@ -232,6 +275,29 @@ const Projects = () => {
                         ))}
                       </div>
                     </div>
+                  ) : project.title === "Dr. Maya Reynolds Website Clone" ? (
+                    <div className="relative h-48 w-full group">
+                      <img
+                        src={mayaReynoldsImages[mayaReynoldsIndex]}
+                        alt={`Dr. Maya Reynolds Website Screenshot ${mayaReynoldsIndex + 1}`}
+                        className="h-48 w-full object-cover rounded-t-lg shadow-lg transition-all duration-500"
+                      />
+                      {/* Carousel controls */}
+                      <button onClick={handleMayaPrev} className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/70 rounded-full p-1 hover:bg-primary/80 transition-colors z-10">
+                        <span className="sr-only">Previous</span>
+                        &#8592;
+                      </button>
+                      <button onClick={handleMayaNext} className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/70 rounded-full p-1 hover:bg-primary/80 transition-colors z-10">
+                        <span className="sr-only">Next</span>
+                        &#8594;
+                      </button>
+                      {/* Dots */}
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                        {mayaReynoldsImages.map((_, i) => (
+                          <span key={i} className={`w-2 h-2 rounded-full ${i === mayaReynoldsIndex ? 'bg-primary' : 'bg-muted-foreground/40'} transition-colors`}></span>
+                        ))}
+                      </div>
+                    </div>
                   ) : project.title === "GigaNEWS - React News Portal" ? (
                     <div className="relative h-48 w-full group">
                       <img
@@ -357,6 +423,31 @@ const Projects = () => {
                           </a>
                         </>
                       ) : project.title === "Deforestation Fire Classification in India Using MODIS Satellite Data" ? (
+                        <>
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1"
+                          >
+                            <Button variant="outline" size="sm" className="w-full group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
+                              <Github size={16} className="mr-2" />
+                              Code
+                            </Button>
+                          </a>
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1"
+                          >
+                            <Button size="sm" className="w-full group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
+                              <ExternalLink size={16} className="mr-2" />
+                              Demo
+                            </Button>
+                          </a>
+                        </>
+                      ) : project.title === "Dr. Maya Reynolds Website Clone" ? (
                         <>
                           <a
                             href={project.github}

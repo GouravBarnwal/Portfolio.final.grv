@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 const About = () => {
   const skills = {
-    'Frontend': ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'],
+    'Frontend': ['React.js','Next.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'],
     'Backend': ['Node.js', 'Express.js', 'FastAPI', 'Flask', 'REST APIs'],
     'Database': ['PostgreSQL', 'MongoDB', 'Firebase', 'SQL'],
     'AI/ML': ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'OpenCV', 'TensorFlow'],
-    'Tools': ['Git', 'GitHub', 'VS Code', 'Jupyter']
+    'Tools': ['Git', 'GitHub', 'VS Code', 'Jupyter','Docker','AWS','Figma']
   };
 
   const experiences = [
@@ -51,14 +51,11 @@ const About = () => {
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed">
-                I'm a dedicated Computer Science Engineering student with hands-on experience in React.js, Node.js, 
-                Express, MongoDB, Firebase, and Python. My passion lies in creating clean, scalable solutions that 
-                bridge the gap between powerful backend systems and intuitive user interfaces.
+              I am a final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, with a strong foundation in full-stack development. I have built scalable applications using React, FastAPI, and PostgreSQL, including an attendance automation system and a real-time stock sentiment tracker. My internship experience helped me understand production-level development, authentication systems, and real-time data processing.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Currently in my 3rd year at Ramgarh Engineering College, I've been actively building projects that 
-                solve real-world problems, from student attendance systems to modern news applications with 
-                comprehensive features and responsive design.
+               Over time, I expanded into AI and Machine Learning, working with Python and Scikit-learn to build data-driven solutions. I developed a MODIS-based fire classification model with 97.8% accuracy and gained hands-on experience handling large datasets. My journey reflects a combination of software engineering and AI/ML, focused on solving practical problems through technology.
+
               </p>
             </div>
 
@@ -164,18 +161,41 @@ const About = () => {
               ))}
             </div>
 
-            {/* Specializations */}
+            <h3 className="text-2xl font-semibold mb-6">Specializations</h3>
             <Card className="card-elegant bg-gradient-subtle">
               <CardContent className="p-6">
-                <h4 className="font-semibold text-lg mb-4">Specializations</h4>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Full-stack web development with React & Node.js</li>
-                  <li>• Real-time database integration with Firebase</li>
-                  <li>• RESTful API design and implementation</li>
-                  <li>• Email automation and OTP authentication</li>
-                  <li>• Responsive UI/UX development</li>
-                  <li>• Modern deployment and CI/CD practices</li>
-                </ul>
+                
+                <div className="space-y-6">
+                  <div>
+                    <h5 className="font-semibold text-base mb-3 text-primary">Web & Backend Engineering</h5>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• Full-stack apps (React, FastAPI, PostgreSQL)</li>
+                      <li>• REST API architecture</li>
+                      <li>• Authentication & role-based access</li>
+                      <li>• Deployment & CI/CD</li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h5 className="font-semibold text-base mb-3 text-primary">AI & Data Engineering</h5>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• ML model training & evaluation</li>
+                      <li>• Financial sentiment analysis</li>
+                      <li>• Satellite data-based classification</li>
+                      <li>• Data visualization & interactive dashboards</li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h5 className="font-semibold text-base mb-3 text-primary">Out of the Box</h5>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• Creative problem-solving approaches</li>
+                      <li>• Innovative solution design</li>
+                      <li>• Cross-disciplinary thinking</li>
+                      <li>• Experimental technology exploration</li>
+                    </ul>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>

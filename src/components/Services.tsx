@@ -1,4 +1,4 @@
-import { Code, Smartphone, Database, Brain, Shield, Zap } from 'lucide-react';
+import { Code, Globe, Server, Database, Brain, GraduationCap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from "framer-motion";
 
@@ -6,57 +6,60 @@ const Services = () => {
   const services = [
     {
       icon: Code,
-      title: "Full-Stack Web Development",
-      description: "End-to-end web application development using React.js, Node.js, and Express.js for scalable, modern solutions.",
-      features: [
-        "React.js frontend development",
-        "Node.js & Express backend",
-        "RESTful API design",
-        "Responsive web design"
-      ]
-    },
-    {
-      icon: Smartphone,
       title: "Frontend Development",
-      description: "Creating intuitive, responsive user interfaces with modern frameworks and best practices for optimal user experience.",
+      description: "Creating modern, responsive user interfaces with cutting-edge frontend technologies and design best practices.",
       features: [
-        "React.js applications",
-        "Responsive UI design",
-        "CSS3 & Tailwind styling",
-        "Mobile-first approach"
+        "Responsive website development (React, Tailwind, JavaScript)",
+        "Landing page & portfolio website creation",
+        "UI cloning and redesign",
+        "Dashboard development (admin panels, analytics UI)"
       ]
     },
     {
-      icon: Database,
-      title: "Backend & Database Integration",
-      description: "Robust backend development with secure API endpoints and efficient database management using MongoDB and Firebase.",
+      icon: Globe,
+      title: "Full-Stack Web Development",
+      description: "End-to-end web application development from frontend to backend, delivering complete scalable solutions.",
       features: [
-        "API development",
-        "MongoDB integration",
-        "Firebase real-time database",
-        "Data modeling & optimization"
+        "End-to-end web application development",
+        "REST API development (FastAPI / Node.js)",
+        "Authentication systems (JWT, OTP login)",
+        "Role-based access systems",
+        "Real-time database integration (Firebase, PostgreSQL)",
+        "Deployment (Render, Netlify)"
       ]
     },
     {
-      icon: Shield,
-      title: "Authentication & Security",
-      description: "Implementing secure authentication systems with OTP verification, email automation, and user management.",
+      icon: Server,
+      title: "Backend & API Services",
+      description: "Robust backend architecture design with secure APIs and optimized database management solutions.",
       features: [
-        "OTP authentication",
-        "Email automation",
-        "Secure user management",
-        "Password reset systems"
+        "Backend architecture design",
+        "Database schema design & optimization",
+        "API integration (third-party APIs)",
+        "Payment gateway / email automation integration"
       ]
     },
     {
-      icon: Zap,
-      title: "Performance Optimization",
-      description: "Optimizing applications for speed, scalability, and performance with modern deployment practices.",
+      icon: Brain,
+      title: "AI / Machine Learning Solutions",
+      description: "Developing intelligent ML models and data-driven solutions for real-world business challenges.",
       features: [
-        "Code optimization",
-        "CI/CD deployment",
-        "Performance monitoring",
-        "Scalable architecture"
+        "ML model development (classification, prediction)",
+        "Data preprocessing & analysis (Pandas, NumPy)",
+        "Model training & evaluation (Scikit-learn)",
+        "Streamlit-based ML web apps",
+        "Sentiment analysis systems",
+        "Dataset cleaning & feature engineering"
+      ]
+    },
+    {
+      icon: GraduationCap,
+      title: "Student / College Projects",
+      description: "Comprehensive project guidance and development support for academic and final-year projects.",
+      features: [
+        "Final year project guidance",
+        "ML-based academic projects",
+        "Full-stack project development support"
       ]
     }
   ];
@@ -70,9 +73,9 @@ const Services = () => {
       </div>
       <div className="container-custom relative z-10">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="heading-secondary mb-4">Services I Offer</h2>
+          <h2 className="heading-secondary mb-4">Specialized Services</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive development services from concept to deployment, specializing in modern web technologies and full-stack solutions
+            Expert development services spanning frontend, full-stack, backend, AI/ML solutions, and academic project support
           </p>
         </div>
 
@@ -104,7 +107,7 @@ const Services = () => {
                   {/* Features */}
                   <div className="space-y-2">
                     <h4 className="font-medium text-sm">What's included:</h4>
-                    <ul className="space-y-1">
+                    <ul className="space-y-1 ml-0">
                       {service.features.map((feature, idx) => (
                         <li key={idx} className="text-xs text-muted-foreground flex items-center animate-feature-fade-in" style={{ animationDelay: `${idx * 80}ms` }}>
                           <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2 flex-shrink-0"></span>
