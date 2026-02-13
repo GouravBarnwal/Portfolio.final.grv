@@ -102,7 +102,7 @@ const Hero = () => {
             <div className="flex-shrink-0 relative mx-auto mt-8">
               <div className="relative w-80 h-80 md:w-80 md:h-80 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden animate-hero-float flex items-center justify-center">
                 <img
-                  src="public/imagesmine/Grv-prof-img.png"
+                  src="/imagesmine/Grv-prof-img.png"
                   alt="Hero Visual"
                   className="w-64 h-64 md:w-64 md:h-64 object-cover scale-110 hover:scale-125 transition-transform duration-500 ease-out"
                 />
