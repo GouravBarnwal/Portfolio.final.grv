@@ -1,7 +1,7 @@
 import { Code, Globe, Server, Database, Brain, GraduationCap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from "framer-motion";
-import React, { useRef, Suspense } from 'react';
+import React, { useRef, Suspense, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -41,46 +41,52 @@ function ApproachingDot() {
 }
 
 function ApproachingDots() {
-  const dots = Array.from({ length: 50 }, (_, i) => (
+  const dots = useMemo(() => Array.from({ length: 100 }, (_, i) => (
     <ApproachingDot key={i} />
-  ));
+  )), []);
   
   return <>{dots}</>;
 }
 
 function GalaxyStars() {
-  const pointsRef = useRef<THREE.Points>(null);
-  
-  const starsCount = 5000;
-  const positions = new Float32Array(starsCount * 3);
-  const colors = new Float32Array(starsCount * 3);
-  const sizes = new Float32Array(starsCount);
-  
-  for (let i = 0; i < starsCount; i++) {
-    const i3 = i * 3;
-    positions[i3] = (Math.random() - 0.5) * 150;
-    positions[i3 + 1] = (Math.random() - 0.5) * 150;
-    positions[i3 + 2] = (Math.random() - 0.5) * 150;
+  const starsData = useMemo(() => {
+    const starsCount = 15000;
+    const positions = new Float32Array(starsCount * 3);
+    const colors = new Float32Array(starsCount * 3);
+    const sizes = new Float32Array(starsCount);
     
-    const starType = Math.random();
-    const brightness = 0.2 + Math.random() * 0.8;
-    
-    if (starType < 0.7) {
-      colors[i3] = brightness;
-      colors[i3 + 1] = brightness;
-      colors[i3 + 2] = brightness;
-    } else if (starType < 0.85) {
-      colors[i3] = brightness;
-      colors[i3 + 1] = brightness * 0.9;
-      colors[i3 + 2] = brightness * 0.7;
-    } else {
-      colors[i3] = brightness * 0.7;
-      colors[i3 + 1] = brightness * 0.8;
-      colors[i3 + 2] = brightness;
+    for (let i = 0; i < starsCount; i++) {
+      const i3 = i * 3;
+      positions[i3] = (Math.random() - 0.5) * 150;
+      positions[i3 + 1] = (Math.random() - 0.5) * 150;
+      positions[i3 + 2] = (Math.random() - 0.5) * 150;
+      
+      const starType = Math.random();
+      const brightness = 0.2 + Math.random() * 0.8;
+      
+      if (starType < 0.7) {
+        colors[i3] = brightness;
+        colors[i3 + 1] = brightness;
+        colors[i3 + 2] = brightness;
+      } else if (starType < 0.85) {
+        colors[i3] = brightness;
+        colors[i3 + 1] = brightness * 0.9;
+        colors[i3 + 2] = brightness * 0.7;
+      } else {
+        colors[i3] = brightness * 0.7;
+        colors[i3 + 1] = brightness * 0.8;
+        colors[i3 + 2] = brightness;
+      }
+      
+      sizes[i] = Math.random() * 0.1 + 0.05;
     }
     
-    sizes[i] = Math.random() * 0.1 + 0.05;
-  }
+    return { positions, colors, sizes };
+  }, []);
+
+  const pointsRef = useRef<THREE.Points>(null);
+  const { positions, colors, sizes } = starsData;
+  const starsCount = 15000;
   
   return (
     <points ref={pointsRef}>
