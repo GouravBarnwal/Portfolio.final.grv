@@ -124,7 +124,7 @@ function GalaxyStars() {
       positions[i3 + 2] = (Math.random() - 0.5) * 150;
       
       const starType = Math.random();
-      const brightness = 0.2 + Math.random() * 0.8;
+      const brightness = 0.6 + Math.random() * 0.4; // Much higher base brightness
       
       if (starType < 0.7) {
         colors[i3] = brightness;
@@ -132,15 +132,15 @@ function GalaxyStars() {
         colors[i3 + 2] = brightness;
       } else if (starType < 0.85) {
         colors[i3] = brightness;
-        colors[i3 + 1] = brightness * 0.9;
-        colors[i3 + 2] = brightness * 0.7;
+        colors[i3 + 1] = brightness * 0.95;
+        colors[i3 + 2] = brightness * 0.85;
       } else {
-        colors[i3] = brightness * 0.7;
-        colors[i3 + 1] = brightness * 0.8;
+        colors[i3] = brightness * 0.85;
+        colors[i3 + 1] = brightness * 0.95;
         colors[i3 + 2] = brightness;
       }
       
-      sizes[i] = Math.random() * 0.1 + 0.05;
+      sizes[i] = Math.random() * 0.2 + 0.15; // Much larger star sizes
     }
     
     return { positions, colors, sizes };
@@ -172,7 +172,7 @@ function GalaxyStars() {
         />
       </bufferGeometry>
       <pointsMaterial 
-        size={0.08} 
+        size={0.12} 
         sizeAttenuation 
         transparent 
         vertexColors
