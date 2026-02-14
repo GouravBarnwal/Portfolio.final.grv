@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
 
   const navItems = [
@@ -16,16 +17,19 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id);
-          break;
-        }
+      const currentScrollY = window.scrollY;
+      const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
+      
+      // Hide navbar when scrolling down
+      if (scrollDirection === 'down' && currentScrollY > 100) {
+        setIsOpen(false);
       }
+      // Show navbar when scrolling up
+      else if (scrollDirection === 'up' && currentScrollY < 100) {
+        setIsOpen(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -36,12 +40,15 @@ const Navigation = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
     }
     setIsOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border shadow-lg animate-nav-fade-in w-full max-w-full px-2 md:px-0">
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b transition-transform duration-300 ${
+      isOpen ? 'translate-y-0' : '-translate-y-full'
+    }`}>
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -55,34 +62,22 @@ const Navigation = () => {
               Gourav's Portfolio
             </span>
           </div>
-
+          
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`nav-link px-4 py-2 rounded-lg transition-all duration-300 hover:bg-primary/10 active:scale-95 ${activeSection === item.id ? 'active shadow-orange-glow' : ''}`}
+                className={`nav-link px-4 py-2 rounded-lg transition-all duration-300 hover:bg-primary/10 active:scale-95 ${
+                  activeSection === item.id ? 'active shadow-orange-glow' : ''
+                }`}
               >
                 {item.label}
               </button>
             ))}
           </div>
-
-          {/* Download CV Button */}
-          <div className="hidden md:block">
-            <a
-              href="/imagesmine/Gourav-Barnwal-Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              download="Gourav-Barnwal-Resume.pdf"
-            >
-              <Button className="btn-accent shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300">
-                Download CV
-              </Button>
-            </a>
-          </div>
-
+          
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 rounded-full border border-border shadow-orange-glow hover:bg-primary/10 transition-all duration-300"
@@ -91,18 +86,19 @@ const Navigation = () => {
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
+        
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border shadow-medium animate-slide-in-down">
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border shadow-medium animate-slide-in-down w-full">
             <div className="container-custom py-4">
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left py-3 px-4 rounded-lg transition-all duration-300 hover:bg-surface hover:scale-105 active:scale-95 ${
-                    activeSection === item.id ? 'text-primary font-medium shadow-orange-glow' : ''
-                  }`}
+                  onClick={() => {
+                    scrollToSection(item.id);
+                    setIsOpen(false);
+                  }}
+                  className="block w-full text-left py-3 px-4 rounded-lg transition-all duration-300 hover:bg-surface hover:scale-105 active:scale-95"
                 >
                   {item.label}
                 </button>

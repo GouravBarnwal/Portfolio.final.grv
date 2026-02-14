@@ -39,7 +39,7 @@ function ApproachingDot() {
   
   return (
     <mesh ref={meshRef} position={[position.x, position.y, position.z]}>
-      <sphereGeometry args={[0.02, 8, 8]} />
+      <sphereGeometry args={[0.04, 8, 8]} />
       <meshBasicMaterial color="#ffffff" transparent opacity={0.6} />
     </mesh>
   );
@@ -84,7 +84,7 @@ function GalaxyStars() {
       colors[i3 + 2] = brightness;
     }
     
-    sizes[i] = Math.random() * 0.06 + 0.02;
+    sizes[i] = Math.random() * 0.1 + 0.05;
   }
   
   return (
@@ -110,7 +110,7 @@ function GalaxyStars() {
         />
       </bufferGeometry>
       <pointsMaterial 
-        size={0.04} 
+        size={0.08} 
         sizeAttenuation 
         transparent 
         vertexColors

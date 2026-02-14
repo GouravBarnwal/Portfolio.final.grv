@@ -1,6 +1,6 @@
 import { Github, Linkedin, Mail, MapPin, Check, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import React, { useEffect, useState, useRef, Suspense } from 'react';
+import React, { useEffect, useState, useRef, Suspense, useMemo } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -96,83 +96,83 @@ function ApproachingDot() {
   
   return (
     <mesh ref={meshRef} position={[position.x, position.y, position.z]}>
-      <sphereGeometry args={[0.02, 8, 8]} />
+      <sphereGeometry args={[0.04, 8, 8]} />
       <meshBasicMaterial color="#ffffff" transparent opacity={0.6} />
     </mesh>
   );
 }
 
 function ApproachingDots() {
-  const dots = Array.from({ length: 50 }, (_, i) => (
+  const dots = useMemo(() => Array.from({ length: 50 }, (_, i) => (
     <ApproachingDot key={i} />
-  ));
+  )), []);
   
   return <>{dots}</>;
 }
 
 function GalaxyStars() {
-  const pointsRef = useRef<THREE.Points>(null);
-  
-  const starsCount = 5000;
-  const positions = new Float32Array(starsCount * 3);
-  const colors = new Float32Array(starsCount * 3);
-  const sizes = new Float32Array(starsCount);
-  
-  for (let i = 0; i < starsCount; i++) {
-    const i3 = i * 3;
-    positions[i3] = (Math.random() - 0.5) * 150;
-    positions[i3 + 1] = (Math.random() - 0.5) * 150;
-    positions[i3 + 2] = (Math.random() - 0.5) * 150;
+  const starsData = useMemo(() => {
+    const starsCount = 5000;
+    const positions = new Float32Array(starsCount * 3);
+    const colors = new Float32Array(starsCount * 3);
+    const sizes = new Float32Array(starsCount);
     
-    // Mix of white, yellow, and blue stars
-    const starType = Math.random();
-    const brightness = 0.2 + Math.random() * 0.8;
-    
-    if (starType < 0.7) {
-      // White stars
-      colors[i3] = brightness;
-      colors[i3 + 1] = brightness;
-      colors[i3 + 2] = brightness;
-    } else if (starType < 0.85) {
-      // Yellow stars
-      colors[i3] = brightness;
-      colors[i3 + 1] = brightness * 0.9;
-      colors[i3 + 2] = brightness * 0.7;
-    } else {
-      // Blue stars
-      colors[i3] = brightness * 0.7;
-      colors[i3 + 1] = brightness * 0.8;
-      colors[i3 + 2] = brightness;
+    for (let i = 0; i < starsCount; i++) {
+      const i3 = i * 3;
+      positions[i3] = (Math.random() - 0.5) * 150;
+      positions[i3 + 1] = (Math.random() - 0.5) * 150;
+      positions[i3 + 2] = (Math.random() - 0.5) * 150;
+      
+      const starType = Math.random();
+      const brightness = 0.2 + Math.random() * 0.8;
+      
+      if (starType < 0.7) {
+        colors[i3] = brightness;
+        colors[i3 + 1] = brightness;
+        colors[i3 + 2] = brightness;
+      } else if (starType < 0.85) {
+        colors[i3] = brightness;
+        colors[i3 + 1] = brightness * 0.9;
+        colors[i3 + 2] = brightness * 0.7;
+      } else {
+        colors[i3] = brightness * 0.7;
+        colors[i3 + 1] = brightness * 0.8;
+        colors[i3 + 2] = brightness;
+      }
+      
+      sizes[i] = Math.random() * 0.1 + 0.05;
     }
     
-    // Varying sizes for depth
-    sizes[i] = Math.random() * 0.06 + 0.02;
-  }
-  
+    return { positions, colors, sizes };
+  }, []);
+
+  const pointsRef = useRef<THREE.Points>(null);
+  const starsCount = 5000;
+
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
           count={starsCount}
-          array={positions}
+          array={starsData.positions}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-color"
           count={starsCount}
-          array={colors}
+          array={starsData.colors}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-size"
           count={starsCount}
-          array={sizes}
+          array={starsData.sizes}
           itemSize={1}
         />
       </bufferGeometry>
       <pointsMaterial 
-        size={0.04} 
+        size={0.08} 
         sizeAttenuation 
         transparent 
         vertexColors
@@ -252,14 +252,13 @@ const Hero = () => {
 
             {/* Hero Image below subtitle */}
             <div className="flex-shrink-0 relative mx-auto mt-8">
-              <div className="relative w-80 h-80 md:w-80 md:h-80 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden animate-hero-float flex items-center justify-center">
+              <div className="relative w-80 h-80 md:w-80 md:h-80 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
                 <img
                   src="/imagesmine/Grv-prof-img.png"
                   alt="Hero Visual"
-                  className="w-64 h-64 md:w-64 md:h-64 object-cover scale-110 hover:scale-125 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-contain scale-110 hover:scale-125 transition-transform duration-500 ease-out"
                 />
-                {/* Add subtle glow effect */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-transparent to-white/10 pointer-events-none"></div>
+                {/* Remove the glow effect since it's causing issues */}
               </div>
             </div>
 
