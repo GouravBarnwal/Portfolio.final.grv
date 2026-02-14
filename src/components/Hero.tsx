@@ -103,7 +103,7 @@ function ApproachingDot() {
 }
 
 function ApproachingDots() {
-  const dots = useMemo(() => Array.from({ length: 100 }, (_, i) => (
+  const dots = useMemo(() => Array.from({ length: 30 }, (_, i) => (
     <ApproachingDot key={i} />
   )), []);
   
@@ -112,7 +112,7 @@ function ApproachingDots() {
 
 function GalaxyStars() {
   const starsData = useMemo(() => {
-    const starsCount = 15000;
+    const starsCount = 5000; // Reduced for mobile performance
     const positions = new Float32Array(starsCount * 3);
     const colors = new Float32Array(starsCount * 3);
     const sizes = new Float32Array(starsCount);
@@ -140,14 +140,24 @@ function GalaxyStars() {
         colors[i3 + 2] = brightness;
       }
       
-      sizes[i] = Math.random() * 0.2 + 0.15; // Much larger star sizes
+      sizes[i] = Math.random() * 0.1 + 0.05; // Smaller star sizes for mobile
     }
     
     return { positions, colors, sizes };
   }, []);
 
   const pointsRef = useRef<THREE.Points>(null);
-  const starsCount = 15000;
+  const starsCount = 5000; // Reduced for mobile performance
+  
+  useFrame((state) => {
+    if (pointsRef.current) {
+      const time = state.clock.getElapsedTime();
+      
+      // Rotate the entire star field
+      pointsRef.current.rotation.y = time * 0.05;
+      pointsRef.current.rotation.x = Math.sin(time * 0.02) * 0.1;
+    }
+  });
 
   return (
     <points ref={pointsRef}>
@@ -172,7 +182,7 @@ function GalaxyStars() {
         />
       </bufferGeometry>
       <pointsMaterial 
-        size={0.12} 
+        size={0.08} 
         sizeAttenuation 
         transparent 
         vertexColors
@@ -182,6 +192,19 @@ function GalaxyStars() {
 }
 
 function Scene3D() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <>
       {/* Pure black background */}
@@ -199,10 +222,13 @@ function Scene3D() {
       <OrbitControls
         enableZoom={false}
         enablePan={false}
-        autoRotate
-        autoRotateSpeed={0.05}
+        autoRotate={isMobile}
+        autoRotateSpeed={0.5}
         maxPolarAngle={Math.PI / 2}
         minPolarAngle={Math.PI / 3}
+        enableDamping={true}
+        dampingFactor={0.05}
+        rotateSpeed={0.5}
       />
     </>
   );

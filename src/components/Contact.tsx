@@ -46,7 +46,7 @@ function ApproachingDot() {
 }
 
 function ApproachingDots() {
-  const dots = useMemo(() => Array.from({ length: 100 }, (_, i) => (
+  const dots = useMemo(() => Array.from({ length: 30 }, (_, i) => (
     <ApproachingDot key={i} />
   )), []);
   
@@ -55,7 +55,7 @@ function ApproachingDots() {
 
 function GalaxyStars() {
   const starsData = useMemo(() => {
-    const starsCount = 15000;
+    const starsCount = 5000; // Reduced for mobile performance
     const positions = new Float32Array(starsCount * 3);
     const colors = new Float32Array(starsCount * 3);
     const sizes = new Float32Array(starsCount);
@@ -67,7 +67,7 @@ function GalaxyStars() {
       positions[i3 + 2] = (Math.random() - 0.5) * 150;
       
       const starType = Math.random();
-      const brightness = 0.2 + Math.random() * 0.8;
+      const brightness = 0.6 + Math.random() * 0.4; // Much higher base brightness
       
       if (starType < 0.7) {
         colors[i3] = brightness;
@@ -75,23 +75,32 @@ function GalaxyStars() {
         colors[i3 + 2] = brightness;
       } else if (starType < 0.85) {
         colors[i3] = brightness;
-        colors[i3 + 1] = brightness * 0.9;
-        colors[i3 + 2] = brightness * 0.7;
+        colors[i3 + 1] = brightness * 0.95;
+        colors[i3 + 2] = brightness * 0.85;
       } else {
-        colors[i3] = brightness * 0.7;
-        colors[i3 + 1] = brightness * 0.8;
+        colors[i3] = brightness * 0.85;
+        colors[i3 + 1] = brightness * 0.95;
         colors[i3 + 2] = brightness;
       }
       
-      sizes[i] = Math.random() * 0.1 + 0.05;
+      sizes[i] = Math.random() * 0.1 + 0.05; // Smaller star sizes for mobile
     }
     
     return { positions, colors, sizes };
   }, []);
 
   const pointsRef = useRef<THREE.Points>(null);
-  const { positions, colors, sizes } = starsData;
-  const starsCount = 15000;
+  const starsCount = 5000; // Reduced for mobile performance
+  
+  useFrame((state) => {
+    if (pointsRef.current) {
+      const time = state.clock.getElapsedTime();
+      
+      // Rotate the entire star field
+      pointsRef.current.rotation.y = time * 0.05;
+      pointsRef.current.rotation.x = Math.sin(time * 0.02) * 0.1;
+    }
+  });
   
   return (
     <points ref={pointsRef}>
@@ -99,19 +108,19 @@ function GalaxyStars() {
         <bufferAttribute
           attach="attributes-position"
           count={starsCount}
-          array={positions}
+          array={starsData.positions}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-color"
           count={starsCount}
-          array={colors}
+          array={starsData.colors}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-size"
           count={starsCount}
-          array={sizes}
+          array={starsData.sizes}
           itemSize={1}
         />
       </bufferGeometry>
