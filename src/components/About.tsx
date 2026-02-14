@@ -1,6 +1,137 @@
 import { GraduationCap, MapPin, Calendar } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from "framer-motion";
+import React, { useRef, Suspense } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
+
+// 3D Scene Components (same as Hero)
+function ApproachingDot() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const [position, setPosition] = React.useState(() => ({
+    x: (Math.random() - 0.5) * 80,
+    y: (Math.random() - 0.5) * 60,
+    z: -50
+  }));
+  
+  useFrame(() => {
+    if (meshRef.current) {
+      setPosition(prev => ({
+        ...prev,
+        z: prev.z + 0.8
+      }));
+      
+      if (position.z > 10) {
+        setPosition({
+          x: (Math.random() - 0.5) * 80,
+          y: (Math.random() - 0.5) * 60,
+          z: -50
+        });
+      }
+    }
+  });
+  
+  return (
+    <mesh ref={meshRef} position={[position.x, position.y, position.z]}>
+      <sphereGeometry args={[0.02, 8, 8]} />
+      <meshBasicMaterial color="#ffffff" transparent opacity={0.6} />
+    </mesh>
+  );
+}
+
+function ApproachingDots() {
+  const dots = Array.from({ length: 50 }, (_, i) => (
+    <ApproachingDot key={i} />
+  ));
+  
+  return <>{dots}</>;
+}
+
+function GalaxyStars() {
+  const pointsRef = useRef<THREE.Points>(null);
+  
+  const starsCount = 5000;
+  const positions = new Float32Array(starsCount * 3);
+  const colors = new Float32Array(starsCount * 3);
+  const sizes = new Float32Array(starsCount);
+  
+  for (let i = 0; i < starsCount; i++) {
+    const i3 = i * 3;
+    positions[i3] = (Math.random() - 0.5) * 150;
+    positions[i3 + 1] = (Math.random() - 0.5) * 150;
+    positions[i3 + 2] = (Math.random() - 0.5) * 150;
+    
+    const starType = Math.random();
+    const brightness = 0.2 + Math.random() * 0.8;
+    
+    if (starType < 0.7) {
+      colors[i3] = brightness;
+      colors[i3 + 1] = brightness;
+      colors[i3 + 2] = brightness;
+    } else if (starType < 0.85) {
+      colors[i3] = brightness;
+      colors[i3 + 1] = brightness * 0.9;
+      colors[i3 + 2] = brightness * 0.7;
+    } else {
+      colors[i3] = brightness * 0.7;
+      colors[i3 + 1] = brightness * 0.8;
+      colors[i3 + 2] = brightness;
+    }
+    
+    sizes[i] = Math.random() * 0.06 + 0.02;
+  }
+  
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={starsCount}
+          array={positions}
+          itemSize={3}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          count={starsCount}
+          array={colors}
+          itemSize={3}
+        />
+        <bufferAttribute
+          attach="attributes-size"
+          count={starsCount}
+          array={sizes}
+          itemSize={1}
+        />
+      </bufferGeometry>
+      <pointsMaterial 
+        size={0.04} 
+        sizeAttenuation 
+        transparent 
+        vertexColors
+      />
+    </points>
+  );
+}
+
+function Scene3D() {
+  return (
+    <>
+      <color attach="background" args={['#000000']} />
+      <ambientLight intensity={0.02} />
+      <GalaxyStars />
+      <ApproachingDots />
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        autoRotate
+        autoRotateSpeed={0.05}
+        maxPolarAngle={Math.PI / 2}
+        minPolarAngle={Math.PI / 3}
+      />
+    </>
+  );
+}
 
 const About = () => {
   const skills = {
@@ -36,11 +167,26 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding">
-      <div className="container-custom">
+    <section id="about" className="section-padding bg-black overflow-hidden relative">
+      {/* 3D Galaxy Background */}
+      <div className="absolute inset-0 z-0">
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 75 }}
+          className="w-full h-full"
+        >
+          <Suspense fallback={null}>
+            <Scene3D />
+          </Suspense>
+        </Canvas>
+      </div>
+      
+      {/* Hazy overlay for better text visibility */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-5" />
+      
+      <div className="container-custom relative z-10">
         <div className="text-center mb-16">
-          <h2 className="heading-secondary mb-4">About Me</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="heading-secondary mb-4 drop-shadow-lg">About Me</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto drop-shadow-md">
             A passionate developer with a strong foundation in full-stack development and modern web technologies
           </p>
         </div>

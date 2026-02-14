@@ -1,8 +1,11 @@
 import { Github, Linkedin, Mail, MapPin, Check, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Float, Stars } from '@react-three/drei';
+import * as THREE from 'three';
 
 // Typewriter hook
 function useTypewriter(lines: string[][], speed = 40, lineDelay = 2000) {
@@ -63,6 +66,148 @@ function useTypewriter(lines: string[][], speed = 40, lineDelay = 2000) {
   return display;
 }
 
+// 3D Scene Components
+function ApproachingDot() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const [position, setPosition] = useState(() => ({
+    x: (Math.random() - 0.5) * 80,
+    y: (Math.random() - 0.5) * 60,
+    z: -50
+  }));
+  
+  useFrame(() => {
+    if (meshRef.current) {
+      // Move dot towards viewer (approaching effect)
+      setPosition(prev => ({
+        ...prev,
+        z: prev.z + 0.8
+      }));
+      
+      // Reset when too close
+      if (position.z > 10) {
+        setPosition({
+          x: (Math.random() - 0.5) * 80,
+          y: (Math.random() - 0.5) * 60,
+          z: -50
+        });
+      }
+    }
+  });
+  
+  return (
+    <mesh ref={meshRef} position={[position.x, position.y, position.z]}>
+      <sphereGeometry args={[0.02, 8, 8]} />
+      <meshBasicMaterial color="#ffffff" transparent opacity={0.6} />
+    </mesh>
+  );
+}
+
+function ApproachingDots() {
+  const dots = Array.from({ length: 50 }, (_, i) => (
+    <ApproachingDot key={i} />
+  ));
+  
+  return <>{dots}</>;
+}
+
+function GalaxyStars() {
+  const pointsRef = useRef<THREE.Points>(null);
+  
+  const starsCount = 5000;
+  const positions = new Float32Array(starsCount * 3);
+  const colors = new Float32Array(starsCount * 3);
+  const sizes = new Float32Array(starsCount);
+  
+  for (let i = 0; i < starsCount; i++) {
+    const i3 = i * 3;
+    positions[i3] = (Math.random() - 0.5) * 150;
+    positions[i3 + 1] = (Math.random() - 0.5) * 150;
+    positions[i3 + 2] = (Math.random() - 0.5) * 150;
+    
+    // Mix of white, yellow, and blue stars
+    const starType = Math.random();
+    const brightness = 0.2 + Math.random() * 0.8;
+    
+    if (starType < 0.7) {
+      // White stars
+      colors[i3] = brightness;
+      colors[i3 + 1] = brightness;
+      colors[i3 + 2] = brightness;
+    } else if (starType < 0.85) {
+      // Yellow stars
+      colors[i3] = brightness;
+      colors[i3 + 1] = brightness * 0.9;
+      colors[i3 + 2] = brightness * 0.7;
+    } else {
+      // Blue stars
+      colors[i3] = brightness * 0.7;
+      colors[i3 + 1] = brightness * 0.8;
+      colors[i3 + 2] = brightness;
+    }
+    
+    // Varying sizes for depth
+    sizes[i] = Math.random() * 0.06 + 0.02;
+  }
+  
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={starsCount}
+          array={positions}
+          itemSize={3}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          count={starsCount}
+          array={colors}
+          itemSize={3}
+        />
+        <bufferAttribute
+          attach="attributes-size"
+          count={starsCount}
+          array={sizes}
+          itemSize={1}
+        />
+      </bufferGeometry>
+      <pointsMaterial 
+        size={0.04} 
+        sizeAttenuation 
+        transparent 
+        vertexColors
+      />
+    </points>
+  );
+}
+
+function Scene3D() {
+  return (
+    <>
+      {/* Pure black background */}
+      <color attach="background" args={['#000000']} />
+      
+      {/* Minimal ambient lighting */}
+      <ambientLight intensity={0.02} />
+      
+      {/* Dense galaxy stars background */}
+      <GalaxyStars />
+      
+      {/* Approaching dots */}
+      <ApproachingDots />
+      
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        autoRotate
+        autoRotateSpeed={0.05}
+        maxPolarAngle={Math.PI / 2}
+        minPolarAngle={Math.PI / 3}
+      />
+    </>
+  );
+}
+
 const Hero = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const scrollToSection = (sectionId: string) => {
@@ -77,23 +222,30 @@ const Hero = () => {
   ]);
 
   return (
-    <section id="home" className="section-padding pt-24 relative bg-gradient-hero">
-      {/* Animated background shapes */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120vw] h-[60vh] z-0 pointer-events-none">
-        <div className="absolute w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-blob1" style={{ left: '-10%', top: '10%' }} />
-        <div className="absolute w-72 h-72 bg-accent/20 rounded-full blur-2xl animate-blob2" style={{ right: '-8%', top: '30%' }} />
-        <div className="absolute w-60 h-60 bg-primary/20 rounded-full blur-2xl animate-blob3" style={{ left: '30%', bottom: '-10%' }} />
+    <section id="home" className="section-padding pt-24 relative bg-black overflow-hidden">
+      {/* 3D Scene Background */}
+      <div className="absolute inset-0 z-0">
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 75 }}
+          className="w-full h-full"
+        >
+          <Suspense fallback={null}>
+            <Scene3D />
+          </Suspense>
+        </Canvas>
       </div>
-      <div className="container-custom relative z-10 flex flex-col md:flex-row items-center justify-between">
+      
+      {/* Removed gradient overlay for pure black background */}
+      <div className="container-custom relative z-20 flex flex-col md:flex-row items-center justify-between">
         <div className="w-full max-w-4xl mx-auto animate-fade-in">
           {/* Content */}
           <div className="space-y-8 text-center md:text-left">
             <div className="space-y-4">
               <p className="text-lg text-muted-foreground">Hi, I am</p>
-              <h1 className="heading-primary animated-gradient-text">
+              <h1 className="heading-primary animated-gradient-text drop-shadow-lg">
                 Gourav Barnwal
               </h1>
-              <h2 className="text-2xl md:text-3xl font-medium animated-gradient-text min-h-[2.5rem]">
+              <h2 className="text-2xl md:text-3xl font-medium animated-gradient-text min-h-[2.5rem] drop-shadow-lg">
                 {subtitle}
               </h2>
             </div>
