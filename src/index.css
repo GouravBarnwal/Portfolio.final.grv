@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -91,7 +91,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
     overflow-x: hidden;
     font-size: 18px;
@@ -117,8 +118,8 @@
 
   /* Buttons */
   .btn-primary {
-    @apply bg-gradient-primary text-primary-foreground shadow-glow text-base lg:text-lg xl:text-xl;
-    @apply px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5;
+    @apply bg-gradient-primary text-primary-foreground shadow-glow text-lg lg:text-xl xl:text-2xl;
+    @apply px-8 py-4 lg:px-10 lg:py-5 xl:px-12 xl:py-6;
     @apply hover:shadow-[0_0_32px_hsl(265_90%_60%/0.7)] hover:scale-105 hover:-rotate-1;
     @apply active:scale-95 active:rotate-1 transition-all duration-300 font-bold tracking-wide;
     border: 2px solid transparent;
@@ -142,8 +143,8 @@
   }
 
   .btn-accent {
-    @apply bg-gradient-accent text-accent-foreground shadow-glow text-base lg:text-lg xl:text-xl;
-    @apply px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5;
+    @apply bg-gradient-accent text-accent-foreground shadow-glow text-lg lg:text-xl xl:text-2xl;
+    @apply px-8 py-4 lg:px-10 lg:py-5 xl:px-12 xl:py-6;
     @apply hover:shadow-[0_0_32px_hsl(285_80%_65%/0.7)] hover:scale-105 hover:rotate-1;
     @apply active:scale-95 active:-rotate-1 transition-all duration-300 font-bold tracking-wide;
     border: 2px solid transparent;
