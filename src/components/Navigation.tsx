@@ -87,7 +87,7 @@ const Navigation = () => {
               rel="noopener noreferrer"
               download="Gourav-Barnwal-Resume.pdf"
             >
-              <Button className="btn-accent shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300">
+              <Button className="btn-accent shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300 px-8 py-4 text-lg lg:text-xl">
                 Download CV
               </Button>
             </a>
@@ -126,7 +126,7 @@ const Navigation = () => {
                   download="Gourav-Barnwal-Resume.pdf"
                   className="block w-full"
                 >
-                  <Button className="btn-accent w-full shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300">
+                  <Button className="btn-accent w-full shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300 px-6 py-4 text-lg">
                     Download CV
                   </Button>
                 </a>
