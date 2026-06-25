@@ -278,7 +278,7 @@ const Hero = () => {
 
             {/* Hero Image — mobile only (shown between title and bio) */}
             <div className="flex-shrink-0 relative mx-auto lg:hidden">
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
+              <div className="relative w-80 h-80 sm:w-96 sm:h-96 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
                 <img
                   src="/imagesmine/Grv-prof-img.png"
                   alt="Gourav Barnwal"
@@ -384,7 +384,7 @@ Final-year B.Tech Computer Science student at Government Engineering College, Ra
 
           {/* Hero Image — desktop */}
           <div className="hidden lg:flex justify-center xl:justify-end items-center order-1 lg:order-2">
-            <div className="relative w-[22rem] h-[22rem] xl:w-[28rem] xl:h-[28rem] 2xl:w-[34rem] 2xl:h-[34rem] rounded-full border-4 xl:border-[6px] border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
+            <div className="relative w-[26rem] h-[26rem] xl:w-[34rem] xl:h-[34rem] 2xl:w-[42rem] 2xl:h-[42rem] rounded-full border-4 xl:border-[6px] border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
               <img
                 src="/imagesmine/Grv-prof-img.png"
                 alt="Gourav Barnwal"
