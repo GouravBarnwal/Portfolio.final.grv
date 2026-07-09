@@ -110,6 +110,13 @@
     min-height: 100dvh;
     background-color: hsl(235 16% 10%);
   }
+
+  /* Some mobile WebGL drivers paint a white frame over the hero canvas. */
+  @media (hover: none) and (pointer: coarse) {
+    .hero-canvas-bg {
+      display: none;
+    }
+  }
 }
 
 @layer components {

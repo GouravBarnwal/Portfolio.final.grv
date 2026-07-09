@@ -250,7 +250,7 @@ const Hero = () => {
   return (
     <section id="home" className="section-padding pt-24 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
       {/* 3D Scene Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="hero-canvas-bg absolute inset-0 z-0">
         <Canvas
           camera={{ position: [0, 0, 5], fov: 75 }}
           className="w-full h-full"
