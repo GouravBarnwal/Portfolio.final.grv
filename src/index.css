@@ -82,8 +82,13 @@
   }
 
   html {
+    height: 100%;
+    min-height: 100%;
+    background-color: hsl(235 16% 10%);
+    color-scheme: dark;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    overscroll-behavior-y: none;
     font-size: 18px;
     -webkit-text-size-adjust: none;
     -moz-text-size-adjust: none;
@@ -92,6 +97,9 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100%;
+    margin: 0;
+    background-color: hsl(235 16% 10%);
     scroll-behavior: smooth;
     overflow-x: hidden;
     font-size: 18px;
@@ -99,6 +107,8 @@
 
   #root {
     @apply w-full min-h-screen;
+    min-height: 100dvh;
+    background-color: hsl(235 16% 10%);
   }
 }
 
