@@ -230,22 +230,22 @@ const Hero = () => {
       
       {/* Removed gradient overlay for pure black background */}
       <div className="container-custom relative z-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 xl:gap-16 2xl:gap-24 items-center min-h-[calc(100vh-5rem)] lg:min-h-[calc(100vh-6rem)] animate-fade-in">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-6 xl:gap-16 2xl:gap-24 items-center min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-6rem)] animate-fade-in">
           {/* Content */}
-          <div className="space-y-8 xl:space-y-10 text-center lg:text-left order-2 lg:order-1">
-            <div className="space-y-4 xl:space-y-6">
-              <p className="text-lg md:text-xl xl:text-2xl text-muted-foreground">Hi, I am</p>
+          <div className="space-y-6 xl:space-y-10 text-center lg:text-left order-2 lg:order-1">
+            <div className="space-y-3 xl:space-y-6">
+              <p className="text-base md:text-xl xl:text-2xl text-muted-foreground">Hi, I am</p>
               <h1 className="heading-primary animated-gradient-text drop-shadow-lg">
                 Gourav Barnwal
               </h1>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium animated-gradient-text min-h-[2.5rem] lg:min-h-[3rem] xl:min-h-[4rem] drop-shadow-lg">
+              <h2 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium animated-gradient-text min-h-[2rem] lg:min-h-[3rem] xl:min-h-[4rem] drop-shadow-lg">
                 {subtitle}
               </h2>
             </div>
 
             {/* Hero Image — mobile only (shown between title and bio) */}
             <div className="flex-shrink-0 relative mx-auto lg:hidden">
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
+              <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
                 <img
                   src="/imagesmine/Grv-prof-img.png"
                   alt="Gourav Barnwal"
@@ -254,11 +254,11 @@ const Hero = () => {
               </div>
             </div>
 
-            <p className="text-body max-w-none mx-auto lg:mx-0">
+            <p className="text-body max-w-none mx-auto lg:mx-0 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
 Final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, passionate about building practical, real-world software solutions. Experienced in full-stack development and machine learning, with hands-on project and internship exposure in developing scalable applications and data-driven systems.            </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 xl:gap-6 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 xl:gap-6 justify-center lg:justify-start">
               <div className="relative">
                 <Button 
                   className="btn-primary shadow-orange-glow hover:shadow-[0_0_32px_hsl(265_90%_60%/0.7)] 
@@ -273,7 +273,7 @@ Final-year B.Tech Computer Science student at Government Engineering College, Ra
               </div>
               <Button 
                 variant="outline"
-                className="px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5 text-base lg:text-lg xl:text-xl border-2 border-primary text-primary hover:bg-primary/10 hover:scale-105 active:scale-95 transition-transform duration-300"
+                className="px-4 py-2 lg:px-8 lg:py-4 xl:px-10 xl:py-5 text-sm lg:text-lg xl:text-xl border-2 border-primary text-primary hover:bg-primary/10 hover:scale-105 active:scale-95 transition-transform duration-300"
                 onClick={() => scrollToSection('contact')}
               >
                 Get In Touch
@@ -281,31 +281,31 @@ Final-year B.Tech Computer Science student at Government Engineering College, Ra
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4 xl:gap-5 pt-4 justify-center lg:justify-start animate-hero-float">
+            <div className="flex items-center gap-3 xl:gap-5 pt-2 justify-center lg:justify-start animate-hero-float">
               <a 
                 href="https://github.com/GouravBarnwal" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-3 lg:p-4 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade"
+                className="p-2 lg:p-4 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade"
               >
-                <Github className="w-5 h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7" />
+                <Github className="w-4 h-4 lg:w-6 lg:h-6 xl:w-7 xl:h-7" />
               </a>
               <a 
                 href="https://linkedin.com/in/grv1404" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-3 lg:p-4 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-100"
+                className="p-2 lg:p-4 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-100"
               >
-                <Linkedin className="w-5 h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7" />
+                <Linkedin className="w-4 h-4 lg:w-6 lg:h-6 xl:w-7 xl:h-7" />
               </a>
               <a 
                 href="https://www.instagram.com/grv.b_1419"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 lg:p-4 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-150"
+                className="p-2 lg:p-4 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-150"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-foreground" />
+                <Instagram className="w-4 h-4 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-foreground" />
               </a>
               <div className="relative group">
                 <button 

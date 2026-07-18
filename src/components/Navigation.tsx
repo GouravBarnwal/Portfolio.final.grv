@@ -51,16 +51,19 @@ const Navigation = () => {
       isVisible ? 'translate-y-0' : '-translate-y-full'
     }`}>
       <div className="container-custom">
-        <div className="flex items-center justify-between lg:justify-start gap-4 lg:gap-8 h-16 lg:h-20 xl:h-24 w-full">
+        <div className="flex items-center justify-between lg:justify-start gap-2 lg:gap-8 h-14 lg:h-20 xl:h-24 w-full">
           {/* Logo */}
-          <div className="flex items-center gap-3 lg:gap-4 cursor-pointer group flex-shrink-0">
+          <div className="flex items-center gap-2 lg:gap-4 cursor-pointer group flex-shrink-0">
             <img
               src="/imagesmine/43c8db34-22ca-4726-80fb-e95c80b7ed93.webp"
               alt="Logo"
-              className="w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border-2 border-primary shadow-orange-glow group-hover:scale-110 group-hover:shadow-lg transition-transform duration-300"
+              className="w-8 h-8 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border-2 border-primary shadow-orange-glow group-hover:scale-110 group-hover:shadow-lg transition-transform duration-300"
             />
-            <span className="text-xl lg:text-2xl xl:text-3xl font-bold text-primary tracking-tight group-hover:text-accent transition-colors duration-300">
+            <span className="text-sm lg:text-2xl xl:text-3xl font-bold text-primary tracking-tight group-hover:text-accent transition-colors duration-300 hidden sm:block">
               Gourav's Portfolio
+            </span>
+            <span className="text-sm font-bold text-primary tracking-tight group-hover:text-accent transition-colors duration-300 sm:hidden">
+              Portfolio
             </span>
           </div>
           
