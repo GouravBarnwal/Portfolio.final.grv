@@ -215,7 +215,7 @@ const Hero = () => {
   ]);
 
   return (
-    <section id="home" className="py-8 lg:py-24 xl:py-28 pt-3 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
+    <section id="home" className="py-8 lg:py-24 xl:py-28 pt-28 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
       {/* 3D Scene Background */}
       <div className="absolute inset-0 z-0">
         <LazyCanvas
