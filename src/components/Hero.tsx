@@ -215,7 +215,7 @@ const Hero = () => {
   ]);
 
   return (
-    <section id="home" className="py-6 lg:py-24 xl:py-28 pt-10 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
+    <section id="home" className="py-4 lg:py-24 xl:py-28 pt-8 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
       {/* 3D Scene Background */}
       <div className="absolute inset-0 z-0">
         <LazyCanvas
@@ -243,19 +243,20 @@ const Hero = () => {
               </h2>
             </div>
 
-            {/* Hero Image — mobile only (shown between title and bio) */}
-            <div className="flex-shrink-0 relative mx-auto lg:hidden">
-              <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
-                <img
-                  src="/imagesmine/Grv-prof-img.png"
-                  alt="Gourav Barnwal"
-                  className="w-full h-full object-contain scale-110 hover:scale-125 transition-transform duration-500 ease-out"
-                />
+            {/* Hero Image and Bio — mobile side by side */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 lg:hidden">
+              <div className="flex-shrink-0 relative">
+                <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
+                  <img
+                    src="/imagesmine/Grv-prof-img.png"
+                    alt="Gourav Barnwal"
+                    className="w-full h-full object-contain scale-110 hover:scale-125 transition-transform duration-500 ease-out"
+                  />
+                </div>
               </div>
-            </div>
-
-            <p className="text-body max-w-none mx-auto lg:mx-0 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+              <p className="text-body text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-center sm:text-left">
 Final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, passionate about building practical, real-world software solutions. Experienced in full-stack development and machine learning, with hands-on project and internship exposure in developing scalable applications and data-driven systems.            </p>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 xl:gap-6 justify-center lg:justify-start">
