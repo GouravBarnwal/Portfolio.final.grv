@@ -6,6 +6,7 @@ import { useFrame } from '@react-three/fiber';
 import { OrbitControls, Float } from '@react-three/drei';
 import * as THREE from 'three';
 import LazyCanvas from '@/components/LazyCanvas';
+import WireframeWave from '@/components/WireframeWave';
 
 type SkillShapeType = 'octahedron' | 'box' | 'cylinder' | 'icosahedron' | 'torus' | 'sphere';
 
@@ -301,18 +302,7 @@ function GalaxyStars() {
 function Scene3D() {
   return (
     <>
-      <color attach="background" args={['#000000']} />
-      <ambientLight intensity={0.02} />
-      <GalaxyStars />
-      <ApproachingDots />
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        autoRotate
-        autoRotateSpeed={0.05}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 3}
-      />
+      <WireframeWave />
     </>
   );
 }

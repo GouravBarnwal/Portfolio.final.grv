@@ -11,6 +11,7 @@ import { useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import LazyCanvas from '@/components/LazyCanvas';
+import WireframeWave from '@/components/WireframeWave';
 
 // 3D Scene Components (same as Hero)
 function ApproachingDot() {
@@ -138,18 +139,7 @@ function GalaxyStars() {
 function Scene3D() {
   return (
     <>
-      <color attach="background" args={['#000000']} />
-      <ambientLight intensity={0.02} />
-      <GalaxyStars />
-      <ApproachingDots />
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        autoRotate
-        autoRotateSpeed={0.05}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 3}
-      />
+      <WireframeWave />
     </>
   );
 }

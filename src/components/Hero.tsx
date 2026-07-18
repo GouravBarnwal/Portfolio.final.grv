@@ -7,6 +7,7 @@ import { useFrame } from '@react-three/fiber';
 import { OrbitControls, Float, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import LazyCanvas from '@/components/LazyCanvas';
+import WireframeWave from '@/components/WireframeWave';
 
 // Typewriter hook
 function useTypewriter(lines: string[][], speed = 40, lineDelay = 2000) {
@@ -193,44 +194,9 @@ function GalaxyStars() {
 }
 
 function Scene3D() {
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   return (
     <>
-      {/* Pure black background */}
-      <color attach="background" args={['#000000']} />
-      
-      {/* Minimal ambient lighting */}
-      <ambientLight intensity={0.02} />
-      
-      {/* Dense galaxy stars background */}
-      <GalaxyStars />
-      
-      {/* Approaching dots */}
-      <ApproachingDots />
-      
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        autoRotate={isMobile}
-        autoRotateSpeed={0.5}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 3}
-        enableDamping={true}
-        dampingFactor={0.05}
-        rotateSpeed={0.5}
-      />
+      <WireframeWave />
     </>
   );
 }
