@@ -248,7 +248,7 @@ const Hero = () => {
   ]);
 
   return (
-    <section id="home" className="section-padding pt-24 lg:pt-28 xl:pt-32 relative overflow-hidden">
+    <section id="home" className="section-padding pt-24 lg:pt-28 xl:pt-32 relative overflow-hidden bg-gradient-to-br from-[hsl(235_16%_10%)] to-[hsl(235_20%_6%)]">
       {/* 3D Scene Background */}
       <div className="hero-canvas-bg absolute inset-0 z-0">
         <Canvas
