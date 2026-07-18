@@ -7,9 +7,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from "framer-motion";
 import React, { useRef, Suspense, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
+import * as THREE from 'three';\nimport LazyCanvas from '@/components/LazyCanvas';
 
 // 3D Scene Components (same as Hero)
 function ApproachingDot() {
@@ -46,7 +46,7 @@ function ApproachingDot() {
 }
 
 function ApproachingDots() {
-  const dots = useMemo(() => Array.from({ length: 30 }, (_, i) => (
+  const dots = useMemo(() => Array.from({ length: 15 }, (_, i) => (
     <ApproachingDot key={i} />
   )), []);
   
@@ -55,7 +55,7 @@ function ApproachingDots() {
 
 function GalaxyStars() {
   const starsData = useMemo(() => {
-    const starsCount = 5000; // Reduced for mobile performance
+    const starsCount = 1500; // Reduced for mobile performance
     const positions = new Float32Array(starsCount * 3);
     const colors = new Float32Array(starsCount * 3);
     const sizes = new Float32Array(starsCount);
@@ -90,7 +90,7 @@ function GalaxyStars() {
   }, []);
 
   const pointsRef = useRef<THREE.Points>(null);
-  const starsCount = 5000; // Reduced for mobile performance
+  const starsCount = 1500; // Reduced for mobile performance
   
   useFrame((state) => {
     if (pointsRef.current) {
@@ -214,14 +214,14 @@ const Contact = () => {
     <section id="contact" className="section-padding bg-black overflow-hidden relative">
       {/* 3D Galaxy Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas
+        <LazyCanvas
           camera={{ position: [0, 0, 5], fov: 75 }}
           className="w-full h-full"
         >
           <Suspense fallback={null}>
             <Scene3D />
           </Suspense>
-        </Canvas>
+        </LazyCanvas>
       </div>
       
       {/* Hazy overlay for better text visibility */}

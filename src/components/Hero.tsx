@@ -3,9 +3,10 @@ import { Button } from '@/components/ui/button';
 import React, { useEffect, useState, useRef, Suspense, useMemo } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { OrbitControls, Float, Stars } from '@react-three/drei';
 import * as THREE from 'three';
+import LazyCanvas from '@/components/LazyCanvas';
 
 // Typewriter hook
 function useTypewriter(lines: string[][], speed = 40, lineDelay = 2000) {
@@ -251,14 +252,14 @@ const Hero = () => {
     <section id="home" className="section-padding pt-24 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
       {/* 3D Scene Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas
+        <LazyCanvas
           camera={{ position: [0, 0, 5], fov: 75 }}
           className="w-full h-full"
         >
           <Suspense fallback={null}>
             <Scene3D />
           </Suspense>
-        </Canvas>
+        </LazyCanvas>
       </div>
       
       {/* Removed gradient overlay for pure black background */}

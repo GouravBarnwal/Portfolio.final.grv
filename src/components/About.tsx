@@ -2,9 +2,10 @@ import { GraduationCap, MapPin, Calendar, Award, Sparkles, Users, Briefcase } fr
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from "framer-motion";
 import React, { useRef, Suspense, useMemo, useState, useEffect, useCallback } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { OrbitControls, Float } from '@react-three/drei';
 import * as THREE from 'three';
+import LazyCanvas from '@/components/LazyCanvas';
 
 type SkillShapeType = 'octahedron' | 'box' | 'cylinder' | 'icosahedron' | 'torus' | 'sphere';
 
@@ -51,19 +52,23 @@ function MiniSkillMesh({ shape, color }: { shape: SkillShapeType; color: string 
   );
 }
 
-function SkillIcon3D({ shape, color }: { shape: SkillShapeType; color: string }) {
+function SkillIcon3D({ color }: { shape: SkillShapeType; color: string }) {
   return (
-    <div className="skill-icon-3d w-11 h-11 xl:w-12 xl:h-12 rounded-xl overflow-hidden shrink-0">
-      <Canvas
-        camera={{ position: [0, 0, 2.4], fov: 42 }}
-        gl={{ alpha: true, antialias: true }}
-        dpr={[1, 1.5]}
-      >
-        <ambientLight intensity={0.55} />
-        <pointLight position={[2, 2, 3]} intensity={1.1} color={color} />
-        <pointLight position={[-2, -1, 2]} intensity={0.4} color="#ffffff" />
-        <MiniSkillMesh shape={shape} color={color} />
-      </Canvas>
+    <div 
+      className="skill-icon-3d w-11 h-11 xl:w-12 xl:h-12 rounded-xl shrink-0 flex items-center justify-center"
+      style={{
+        background: `linear-gradient(135deg, ${color}40, ${color}20)`,
+        border: `2px solid ${color}60`,
+        animation: 'skill-icon-rotate 4s ease-in-out infinite',
+      }}
+    >
+      <div 
+        className="w-6 h-6 xl:w-7 xl:h-7 rounded-lg"
+        style={{
+          background: `linear-gradient(135deg, ${color}, ${color}80)`,
+          boxShadow: `0 0 12px ${color}60`,
+        }}
+      />
     </div>
   );
 }
@@ -372,14 +377,14 @@ const About = () => {
     <section id="about" className="section-padding bg-black overflow-hidden relative">
       {/* 3D Galaxy Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas
+        <LazyCanvas
           camera={{ position: [0, 0, 5], fov: 75 }}
           className="w-full h-full"
         >
           <Suspense fallback={null}>
             <Scene3D />
           </Suspense>
-        </Canvas>
+        </LazyCanvas>
       </div>
       
       {/* Hazy overlay for better text visibility */}
@@ -444,7 +449,7 @@ const About = () => {
           <div className="skills-3d-panel relative rounded-3xl overflow-hidden border border-primary/15">
             {/* Floating 3D shapes behind skills */}
             <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
-              <Canvas
+              <LazyCanvas
                 camera={{ position: [0, 0, 8], fov: 55 }}
                 gl={{ alpha: true, antialias: true }}
                 dpr={[1, 1.5]}
@@ -452,7 +457,7 @@ const About = () => {
                 <Suspense fallback={null}>
                   <SkillsBackdropScene />
                 </Suspense>
-              </Canvas>
+              </LazyCanvas>
             </div>
             <div className="absolute inset-0 z-[1] bg-gradient-to-br from-black/75 via-black/55 to-primary/10 pointer-events-none" />
 
