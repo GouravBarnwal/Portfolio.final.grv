@@ -51,21 +51,21 @@ const Navigation = () => {
       isVisible ? 'translate-y-0' : '-translate-y-full'
     }`}>
       <div className="container-custom">
-        <div className="flex items-center justify-between xl:justify-start gap-3 xl:gap-8 h-16 xl:h-24 w-full">
+        <div className="flex items-center justify-between lg:justify-start gap-4 lg:gap-8 h-16 lg:h-20 xl:h-24 w-full">
           {/* Logo */}
-          <div className="flex min-w-0 items-center gap-2 sm:gap-3 xl:gap-4 cursor-pointer group">
+          <div className="flex items-center gap-3 lg:gap-4 cursor-pointer group flex-shrink-0">
             <img
               src="/imagesmine/43c8db34-22ca-4726-80fb-e95c80b7ed93.webp"
               alt="Logo"
-              className="w-9 h-9 sm:w-10 sm:h-10 xl:w-14 xl:h-14 flex-shrink-0 rounded-full border-2 border-primary shadow-orange-glow group-hover:scale-110 group-hover:shadow-lg transition-transform duration-300"
+              className="w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border-2 border-primary shadow-orange-glow group-hover:scale-110 group-hover:shadow-lg transition-transform duration-300"
             />
-            <span className="truncate text-base sm:text-xl xl:text-3xl font-bold text-primary tracking-tight group-hover:text-accent transition-colors duration-300">
+            <span className="text-xl lg:text-2xl xl:text-3xl font-bold text-primary tracking-tight group-hover:text-accent transition-colors duration-300">
               Gourav's Portfolio
             </span>
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden xl:flex flex-1 items-center justify-center gap-4">
+          <div className="hidden md:flex flex-1 items-center justify-center gap-1 lg:gap-2 xl:gap-4">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -80,14 +80,14 @@ const Navigation = () => {
           </div>
           
           {/* Download CV Button */}
-          <div className="hidden xl:block flex-shrink-0">
+          <div className="hidden md:block flex-shrink-0">
             <a
               href="/imagesmine/Gourav-Barnwal-Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download="Gourav-Barnwal-Resume.pdf"
             >
-              <Button className="btn-accent shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300 px-8 py-4 text-lg lg:text-xl">
+              <Button className="btn-accent shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300">
                 Download CV
               </Button>
             </a>
@@ -95,8 +95,7 @@ const Navigation = () => {
           
           {/* Mobile Menu Button */}
           <button
-            className="xl:hidden flex-shrink-0 p-2 rounded-full border border-border shadow-orange-glow hover:bg-primary/10 transition-all duration-300"
-            aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            className="md:hidden p-2 rounded-full border border-border shadow-orange-glow hover:bg-primary/10 transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -105,7 +104,7 @@ const Navigation = () => {
         
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="xl:hidden absolute top-16 left-0 right-0 bg-background border-b border-border shadow-medium animate-slide-in-down w-full">
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border shadow-medium animate-slide-in-down w-full">
             <div className="container-custom py-4">
               {navItems.map((item) => (
                 <button
@@ -127,7 +126,7 @@ const Navigation = () => {
                   download="Gourav-Barnwal-Resume.pdf"
                   className="block w-full"
                 >
-                  <Button className="btn-accent w-full shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300 px-6 py-4 text-lg">
+                  <Button className="btn-accent w-full shadow-orange-glow hover:scale-105 active:scale-95 transition-transform duration-300">
                     Download CV
                   </Button>
                 </a>

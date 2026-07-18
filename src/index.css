@@ -81,41 +81,19 @@
     @apply border-border;
   }
 
-  html {
-    height: 100%;
-    min-height: 100%;
-    background-color: hsl(235 16% 10%);
-    color-scheme: dark;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-    overscroll-behavior-y: none;
-    font-size: 18px;
-    -webkit-text-size-adjust: none;
-    -moz-text-size-adjust: none;
-    text-size-adjust: none;
-  }
-
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    min-height: 100%;
-    margin: 0;
-    background: linear-gradient(135deg, hsl(235 16% 10%) 0%, hsl(235 20% 6%) 100%);
     scroll-behavior: smooth;
     overflow-x: hidden;
-    font-size: 18px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   #root {
     @apply w-full min-h-screen;
-    min-height: 100dvh;
-    background-color: hsl(235 16% 10%);
-  }
-
-  /* Some mobile WebGL drivers paint a white frame over the hero canvas. */
-  @media (hover: none) and (pointer: coarse) {
-    .hero-canvas-bg {
-      display: none;
-    }
   }
 }
 
@@ -240,23 +218,23 @@
 
   /* Typography */
   .heading-primary {
-    @apply text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight;
   }
 
   .heading-secondary {
-    @apply text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-semibold tracking-tight;
+    @apply text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-semibold tracking-tight;
   }
 
   .section-intro {
-    @apply text-xl md:text-2xl lg:text-3xl xl:text-4xl text-muted-foreground max-w-4xl xl:max-w-5xl mx-auto leading-relaxed;
+    @apply text-lg md:text-xl lg:text-2xl xl:text-3xl text-muted-foreground max-w-4xl xl:max-w-5xl mx-auto leading-relaxed;
   }
 
   .subheading {
-    @apply text-3xl md:text-4xl xl:text-5xl font-semibold;
+    @apply text-2xl md:text-3xl xl:text-4xl font-semibold;
   }
 
   .text-body {
-    @apply text-lg md:text-xl xl:text-2xl 2xl:text-3xl text-muted-foreground leading-relaxed;
+    @apply text-base md:text-lg xl:text-xl 2xl:text-2xl text-muted-foreground leading-relaxed;
   }
 
   .text-accent-gradient {

@@ -121,60 +121,54 @@ const CodeTypingBackground = ({ variant = 'ambient' }: CodeTypingBackgroundProps
   const isHero = variant === 'hero';
 
   return (
-    <>
-      {/* Mobile fallback - simple gradient background */}
-      <div className="md:hidden absolute inset-0 bg-gradient-to-br from-[hsl(235_20%_6%)] to-[hsl(235_25%_8%)]" aria-hidden="true" />
-      
-      {/* Desktop version with full effects */}
-      <div className={`code-typing-bg ${isHero ? 'code-typing-bg-hero' : 'code-typing-bg-ambient'} hidden md:block`} aria-hidden="true">
-        <div className="code-grid-overlay" />
+    <div className={`code-typing-bg ${isHero ? 'code-typing-bg-hero' : 'code-typing-bg-ambient'}`} aria-hidden="true">
+      <div className="code-grid-overlay" />
 
-        {isHero ? (
-          <>
-            <div className="code-rain-layer">
-              {Array.from({ length: 12 }).map((_, i) => (
-                <CodeRainColumn key={i} delay={i * 0.7} left={`${i * 8.5 + 2}%`} />
-              ))}
-            </div>
-            <TerminalWindow
-              snippet={CODE_SNIPPETS[0]}
-              title="portfolio.ts"
-              className="coder-terminal-pos-1"
-              speed={22}
-            />
-            <TerminalWindow
-              snippet={CODE_SNIPPETS[1]}
-              title="llm_eval.py"
-              className="coder-terminal-pos-2 hidden lg:block"
-              speed={26}
-            />
-            <TerminalWindow
-              snippet={CODE_SNIPPETS[3]}
-              title="bash — zsh"
-              className="coder-terminal-pos-3 hidden xl:block"
-              speed={18}
-            />
-          </>
-        ) : (
-          <>
-            <div className="code-rain-layer">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <CodeRainColumn key={i} delay={i * 0.9} left={`${i * 12 + 4}%`} />
-              ))}
-            </div>
-            <div className="coder-ambient-lines">
-              {CODE_SNIPPETS.slice(0, 4).map((line, i) => (
-                <p key={i} className="coder-ambient-line" style={{ animationDelay: `${i * 2}s` }}>
-                  {line.split('\n')[0]}
-                </p>
-              ))}
-            </div>
-          </>
-        )}
+      {isHero ? (
+        <>
+          <div className="code-rain-layer hidden md:block">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <CodeRainColumn key={i} delay={i * 0.7} left={`${i * 8.5 + 2}%`} />
+            ))}
+          </div>
+          <TerminalWindow
+            snippet={CODE_SNIPPETS[0]}
+            title="portfolio.ts"
+            className="coder-terminal-pos-1 hidden md:block"
+            speed={22}
+          />
+          <TerminalWindow
+            snippet={CODE_SNIPPETS[1]}
+            title="llm_eval.py"
+            className="coder-terminal-pos-2 hidden lg:block"
+            speed={26}
+          />
+          <TerminalWindow
+            snippet={CODE_SNIPPETS[3]}
+            title="bash — zsh"
+            className="coder-terminal-pos-3 hidden xl:block"
+            speed={18}
+          />
+        </>
+      ) : (
+        <>
+          <div className="code-rain-layer hidden md:block">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <CodeRainColumn key={i} delay={i * 0.9} left={`${i * 12 + 4}%`} />
+            ))}
+          </div>
+          <div className="coder-ambient-lines hidden md:block">
+            {CODE_SNIPPETS.slice(0, 4).map((line, i) => (
+              <p key={i} className="coder-ambient-line" style={{ animationDelay: `${i * 2}s` }}>
+                {line.split('\n')[0]}
+              </p>
+            ))}
+          </div>
+        </>
+      )}
 
-        <div className="coder-scanlines" />
-      </div>
-    </>
+      <div className="coder-scanlines hidden md:block" />
+    </div>
   );
 };
 
