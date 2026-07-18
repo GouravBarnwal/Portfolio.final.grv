@@ -207,8 +207,8 @@ function Scene3D() {
 
   return (
     <>
-      {/* Transparent background to show page gradient */}
-      <color attach="background" args={[null]} />
+      {/* Dark background matching page theme */}
+      <color attach="background" args={['#0f1014']} />
       
       {/* Minimal ambient lighting */}
       <ambientLight intensity={0.02} />
