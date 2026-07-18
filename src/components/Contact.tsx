@@ -9,7 +9,8 @@ import { motion } from "framer-motion";
 import React, { useRef, Suspense, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';\nimport LazyCanvas from '@/components/LazyCanvas';
+import * as THREE from 'three';
+import LazyCanvas from '@/components/LazyCanvas';
 
 // 3D Scene Components (same as Hero)
 function ApproachingDot() {
