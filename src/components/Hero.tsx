@@ -215,7 +215,7 @@ const Hero = () => {
   ]);
 
   return (
-    <section id="home" className="py-4 lg:py-24 xl:py-28 pt-8 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
+    <section id="home" className="py-2 lg:py-24 xl:py-28 pt-6 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
       {/* 3D Scene Background */}
       <div className="absolute inset-0 z-0">
         <LazyCanvas
@@ -230,10 +230,10 @@ const Hero = () => {
       
       {/* Removed gradient overlay for pure black background */}
       <div className="container-custom relative z-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-4 xl:gap-16 2xl:gap-24 items-center min-h-[calc(100vh-3rem)] lg:min-h-[calc(100vh-6rem)] animate-fade-in">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-3 xl:gap-16 2xl:gap-24 items-center min-h-[calc(100vh-2.5rem)] lg:min-h-[calc(100vh-6rem)] animate-fade-in">
           {/* Content */}
-          <div className="space-y-4 xl:space-y-10 text-center lg:text-left order-2 lg:order-1">
-            <div className="space-y-2 xl:space-y-6">
+          <div className="space-y-3 xl:space-y-10 text-center lg:text-left order-2 lg:order-1">
+            <div className="space-y-1 xl:space-y-6">
               <p className="text-base md:text-xl xl:text-2xl text-muted-foreground">Hi, I am</p>
               <h1 className="heading-primary animated-gradient-text drop-shadow-lg">
                 Gourav Barnwal
