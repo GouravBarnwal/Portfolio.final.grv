@@ -230,7 +230,7 @@ const Hero = () => {
       
       {/* Removed gradient overlay for pure black background */}
       <div className="container-custom relative z-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-3 xl:gap-16 2xl:gap-24 items-center min-h-[calc(100vh-2.5rem)] lg:min-h-[calc(100vh-6rem)] animate-fade-in">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-3 xl:gap-16 2xl:gap-24 items-start lg:items-center min-h-0 lg:min-h-[calc(100vh-6rem)] animate-fade-in">
           {/* Content */}
           <div className="space-y-3 xl:space-y-10 text-center lg:text-left order-2 lg:order-1">
             <div className="space-y-1 xl:space-y-6">
