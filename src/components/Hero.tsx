@@ -215,7 +215,7 @@ const Hero = () => {
   ]);
 
   return (
-    <section id="home" className="py-2 lg:py-24 xl:py-28 pt-6 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
+    <section id="home" className="py-8 lg:py-24 xl:py-28 pt-12 lg:pt-28 xl:pt-32 relative bg-black overflow-hidden">
       {/* 3D Scene Background */}
       <div className="absolute inset-0 z-0">
         <LazyCanvas
@@ -257,6 +257,11 @@ const Hero = () => {
               <p className="text-body text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-center sm:text-left">
 Final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, passionate about building practical, real-world software solutions. Experienced in full-stack development and machine learning, with hands-on project and internship exposure in developing scalable applications and data-driven systems.            </p>
             </div>
+
+            {/* Bio — desktop only */}
+            <p className="hidden lg:block text-body lg:text-lg xl:text-xl 2xl:text-2xl text-left">
+              Final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, passionate about building practical, real-world software solutions. Experienced in full-stack development and machine learning, with hands-on project and internship exposure in developing scalable applications and data-driven systems.
+            </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 xl:gap-6 justify-center lg:justify-start">
