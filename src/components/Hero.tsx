@@ -103,7 +103,7 @@ function ApproachingDot() {
 }
 
 function ApproachingDots() {
-  const dots = useMemo(() => Array.from({ length: 30 }, (_, i) => (
+  const dots = useMemo(() => Array.from({ length: 15 }, (_, i) => (
     <ApproachingDot key={i} />
   )), []);
   
@@ -112,7 +112,7 @@ function ApproachingDots() {
 
 function GalaxyStars() {
   const starsData = useMemo(() => {
-    const starsCount = 5000; // Reduced for mobile performance
+    const starsCount = 1500; // Further reduced for better mobile performance
     const positions = new Float32Array(starsCount * 3);
     const colors = new Float32Array(starsCount * 3);
     const sizes = new Float32Array(starsCount);
@@ -147,7 +147,7 @@ function GalaxyStars() {
   }, []);
 
   const pointsRef = useRef<THREE.Points>(null);
-  const starsCount = 5000; // Reduced for mobile performance
+  const starsCount = 1500; // Further reduced for better mobile performance
   
   useFrame((state) => {
     if (pointsRef.current) {
