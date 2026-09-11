@@ -1,0 +1,66 @@
+Gourav Barnwal  Full Stack Developer / AIML Learner
+Email : barnwalgourav547@gmail.com |Phone : +91 8809210035 |linkedin.com |github.com 
+Portfolio : https://gouravs-portfolio.vercel.app/ |Dhanbad, Jharkhand - 828111 
+Professional Summary
+Full-stack developer skilled in React.js, FastAPI, Flask, Firebase, and PostgreSQL, with experience building scalable web 
+applications and deploying ML models using Python, Streamlit, and Scikit-learn. Strong focus on clean architecture, UI/UX, 
+data-driven development, and end-to-end product delivery. Passionate about AI, automation, and building high-impact 
+applications.
+Work Experience
+Oct 2025 – Present
+Boston, Massachusetts, USAI Software Engineer Intern - Tickerpulse
+AI Product Manager Accelerator
+•Integrated frontend and backend using React.js and FastAPI enabling smooth API communication. 
+•Designed and managed PostgreSQL databases, including schema setup and CRUD operations. 
+•Ensured reliable data flow across the React.js UI, FastAPI backend, and PostgreSQL database.
+Jun 2025 – Jul 2025
+Ranchi - HybridSoftware Development Intern
+National Institute of Advanced Manufacturing Technology (NIAMT), Ranchi
+•Built a full-stack app for attendance automation using React.js, Flask, Firebase
+•Added OTP login, email alerts, SBI Collect integration
+•Role-based access with real-time updates
+Jul 2025 – Aug 2025
+RemoteAI/ML Intern - Classification of Fire Types in India Using MODIS Satellite Data
+AICTE × Edunet Foundation × Shell
+•Analyzed MODIS fire data (2021–2023) to classify fire types (vegetation, static, etc.)
+•Performed EDA on class imbalance and spatial distribution
+•Built & deployed an ML app using Python, Streamlit, Scikit-learn, Folium, Pandas.
+Projects
+Oct 2025 – Present TickerPulse — Stock Trend & Sentiment Tracker (ReactJS, FastAPI, PostgreSQL)
+Tracks stock mentions from influencers and financial content to identify trending companies. 
+Includes alerts, market-interest analysis, and a clean UI for investors.
+Jul 2025 – Aug 2025 Deforestation Fire Classification (Using Modis csv data)
+Deployed a model that predicts fire types using satellite attributes like brightness & FRP. Includes 
+interactive maps, real fire comparisons (2021–2023), and downloadable reports.
+Jun 2025 – Jul 2025 Students Attendance Monitoring and Alert Generation System (ReactJS, Firebase, Flask)
+Full-stack application made with React.js, Python Flask, and Firebase to automate attendance. 
+Features include role-based dashboards, email alerts for attendance below 75%, OTP password 
+recovery, and integration with SBI payment gateway.
+Skills
+Front-end
+ReactJs, HTML5, CSS3, JavaScript, Tailwind CSS, Bootstrap
+Database
+MongoDb, Firebase, PostgreSQL
+AI/ML
+Python, Pandas, Seaborn, Scikit-learn, Folium, JupyterBackend
+NodeJs, ExpressJs, Flask
+API's
+RestAPI's, Email/OTP Auth, SBI Collect Integration
+Tools
+Git, GitHub, Render, Netlify, Streamlit
+Certificates
+Data Analytics Workshop, IIT, Kharagpur | Jan, 2024 Internship Certificate, NIAMT Ranchi — Jun–Jul 2025
+Achievements & Recognition
+Letter Of Recommendation(NIAMT)
+• LOR from NIAMT Ranchi for performance in full-stack internship (June–July 2025)
+Education
+Dec 2022 – Aug 2026
+Ranchi, JharkhandBachelor's in Computer Science & Engineering
+Ramgarh Engineering College, Ramgarh
+CGPA : 7.27
+ — Competent
+ — Proficient
+ — Competent
+ — Competent
+ — Competent
+ — Competent
