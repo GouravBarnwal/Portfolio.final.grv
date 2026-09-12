@@ -79,7 +79,10 @@ const WireframeWave: React.FC<WireframeWaveProps> = ({
   });
 
   return (
-    <mesh ref={meshRef} geometry={geometry} material={material} rotation={[-Math.PI / 2.5, 0, 0]} />
+    <>
+      <color attach="background" args={[color]} />
+      <mesh ref={meshRef} geometry={geometry} material={material} rotation={[-Math.PI / 2.5, 0, 0]} />
+    </>
   );
 };
 
