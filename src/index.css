@@ -562,6 +562,50 @@
     animation: input-focus 1s cubic-bezier(0.4,0,0.2,1) both;
   }
 
+  .hero-name-text {
+    @apply font-bold animated-gradient-text block max-w-full;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  /* Hero role typewriter */
+  .hero-role-shell {
+    @apply relative inline-block max-w-full;
+  }
+
+  .hero-role-heading {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight leading-tight;
+    @apply min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[4rem] xl:min-h-[5rem];
+  }
+
+  .hero-role-text {
+    background: linear-gradient(135deg, hsl(265 90% 68%), hsl(285 85% 72%), hsl(200 90% 65%), hsl(265 90% 68%));
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 24px hsl(265 90% 60% / 0.35));
+  }
+
+  .hero-role-cursor {
+    @apply inline-block ml-1 text-primary font-light;
+    animation: hero-cursor-blink 1s step-end infinite;
+  }
+
+  .hero-role-accent {
+    @apply mt-3 h-1 w-24 rounded-full;
+    background: linear-gradient(90deg, hsl(265 90% 60%), hsl(285 80% 65%), hsl(200 90% 60%));
+    box-shadow: 0 0 16px hsl(265 90% 60% / 0.5);
+  }
+
+  @keyframes hero-cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
   /* Animated gradient text for headings */
   .animated-gradient-text {
     background: linear-gradient(90deg, hsl(265 90% 60%), hsl(285 80% 65%), hsl(265 90% 60%));

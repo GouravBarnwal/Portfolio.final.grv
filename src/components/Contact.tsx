@@ -168,7 +168,7 @@ const Contact = () => {
     {
       icon: MapPin,
       label: "Location",
-      value: "Dhanbad, Jharkhand - 828111",
+      value: "Bengaluru, Karnataka, India - 560076",
       link: null
     }
   ];
@@ -189,8 +189,8 @@ const Contact = () => {
     {
       icon: Instagram,
       label: "Instagram",
-      username: "grv.b_1419",
-      link: "https://www.instagram.com/grv.b_1419"
+      username: "grv_143_",
+      link: "https://www.instagram.com/grv_143_"
     }
   ];
 
@@ -293,7 +293,7 @@ const Contact = () => {
             {/* Location Illustration */}
             <div className="mt-8 flex items-center gap-3 animate-fade-in delay-300">
               {/* <MapPin size={24} className="text-primary animate-icon-bounce" /> */}
-              {/* <span className="text-lg font-medium text-primary">Dhanbad, Jharkhand, India - 828111</span> */}
+              {/* <span className="text-lg font-medium text-primary">Bengaluru, Karnataka, India - 560076</span> */}
             </div>
           </div>
 

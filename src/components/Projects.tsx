@@ -6,6 +6,34 @@ import { useState, useEffect, useRef } from 'react';
 const Projects = () => {
   const projects = [
     {
+      title: "VISYN — Deep Visual Intelligence for Quality Inspection",
+      description: "Production visual anomaly detection system achieving 0.9511 macro AUROC and 0.9525 macro AP across 6 industrial categories, using MobileNetV3-Small features and category-specific reference banks. Includes patch-level anomaly localization and a deterministic, seed-controlled evaluation framework. Deployed live via FastAPI/Docker on Vercel + Render.",
+      technologies: ["Python", "PyTorch", "Computer Vision", "Anomaly Detection", "FastAPI", "Docker"],
+      features: [
+        "0.9511 macro AUROC and 0.9525 macro AP across 6 industrial categories",
+        "MobileNetV3-Small features with category-specific reference banks",
+        "Patch-level anomaly localization with seed-controlled evaluation",
+        "Deployed live via FastAPI/Docker on Vercel + Render"
+      ],
+      github: "https://github.com/GouravBarnwal/VISYN.git",
+      demo: "https://visyn-chi.vercel.app/",
+      image: "visyn"
+    },
+    {
+      title: "DevLens — AI Debugging Tool with Vision Pipeline",
+      description: "End-to-end pipeline from phone-captured error screenshots through OCR, LLM diagnosis, code localization, fix generation, and sandboxed fix verification. Fine-tuned a DistilBERT classifier (82% held-out accuracy across 22 error types) and built a 5-candidate OCR ensemble for noisy phone photos. Live deployment across Vercel, Render, Docker, and E2B.",
+      technologies: ["Python", "OpenCV", "Tesseract", "FastAPI", "Next.js", "Gemini API", "DistilBERT", "E2B"],
+      features: [
+        "End-to-end pipeline from phone-captured error screenshots to fix verification",
+        "Fine-tuned DistilBERT classifier (82% accuracy across 22 error types)",
+        "5-candidate OCR ensemble for noisy phone photos",
+        "Live deployment across Vercel, Render, Docker, and E2B"
+      ],
+      github: "https://github.com/GouravBarnwal/DevLens-full-source.git",
+      demo: "https://dev-lens-lite.vercel.app/",
+      image: "devlens"
+    },
+    {
       title: "TickerPulse — AI-Powered Stock Sentiment Analysis & Trend Prediction Platform",
       description: "A comprehensive platform that tracks stock mentions from influencers and financial content to identify trending companies. Features include alerts, market-interest analysis, and a clean UI for investors.",
       technologies: ["React.js", "FastAPI", "PostgreSQL", "WebSocket", "Financial APIs", "Data Visualization"],
@@ -16,7 +44,7 @@ const Projects = () => {
         "Clean, user-friendly interface for investors",
         "Real-time data updates and notifications"
       ],
-      github: "#",
+      github: "https://github.com/GouravBarnwal/Tickerpulse.git",
       demo: "#",
       image: "ticker-pulse"
     },
@@ -161,6 +189,51 @@ const Projects = () => {
     setFireIndex((prev) => (prev + 1) % fireClassificationImages.length);
   };
 
+  // Carousel images for VISYN
+  const visynImages = [
+    'imagesmine/visyn-inspection-pass.png',
+    'imagesmine/visyn-defect-bottle.png',
+    'imagesmine/visyn-defect-hazelnut.png',
+  ];
+  const [visynIndex, setVisynIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisynIndex((prev) => (prev + 1) % visynImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [visynImages.length]);
+  const handleVisynPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setVisynIndex((prev) => (prev - 1 + visynImages.length) % visynImages.length);
+  };
+  const handleVisynNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setVisynIndex((prev) => (prev + 1) % visynImages.length);
+  };
+
+  // Carousel images for DevLens
+  const devLensImages = [
+    'imagesmine/devlens-dashboard.png',
+    'imagesmine/devlens-error-analysis.png',
+    'imagesmine/devlens-fix-generation.png',
+    'imagesmine/devlens-verification.png',
+  ];
+  const [devLensIndex, setDevLensIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDevLensIndex((prev) => (prev + 1) % devLensImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [devLensImages.length]);
+  const handleDevLensPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDevLensIndex((prev) => (prev - 1 + devLensImages.length) % devLensImages.length);
+  };
+  const handleDevLensNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDevLensIndex((prev) => (prev + 1) % devLensImages.length);
+  };
+
   // Carousel images for TickerPulse
   const tickerPulseImages = [
     'imagesmine/image.png',
@@ -216,7 +289,7 @@ const Projects = () => {
         <div className="text-center mb-16 xl:mb-20 animate-fade-in">
           <h2 className="heading-secondary mb-4">Featured Projects</h2>
           <p className="section-intro">
-            A showcase of my recent work in full-stack development and modern web applications
+            A showcase of computer vision, AI/ML, and backend systems built for production and research
           </p>
         </div>
 
@@ -229,7 +302,49 @@ const Projects = () => {
             >
               <div className="tilt-card-inner card-elegant group relative overflow-visible animate-project-fade-in h-full flex flex-col" style={{ animationDelay: `${index * 120}ms` }}>
                 <div className="relative overflow-hidden rounded-t-lg">
-                  {project.title === "TickerPulse — AI-Powered Stock Sentiment Analysis & Trend Prediction Platform" ? (
+                  {project.title === "VISYN — Deep Visual Intelligence for Quality Inspection" ? (
+                    <div className="relative h-48 xl:h-56 2xl:h-64 w-full group">
+                      <img
+                        src={visynImages[visynIndex]}
+                        alt={`VISYN Screenshot ${visynIndex + 1}`}
+                        className="h-48 xl:h-56 2xl:h-64 w-full object-cover rounded-t-lg shadow-lg transition-all duration-500"
+                      />
+                      <button onClick={handleVisynPrev} className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/70 rounded-full p-1 hover:bg-primary/80 transition-colors z-10">
+                        <span className="sr-only">Previous</span>
+                        &#8592;
+                      </button>
+                      <button onClick={handleVisynNext} className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/70 rounded-full p-1 hover:bg-primary/80 transition-colors z-10">
+                        <span className="sr-only">Next</span>
+                        &#8594;
+                      </button>
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                        {visynImages.map((_, i) => (
+                          <span key={i} className={`w-2 h-2 rounded-full ${i === visynIndex ? 'bg-primary' : 'bg-muted-foreground/40'} transition-colors`}></span>
+                        ))}
+                      </div>
+                    </div>
+                  ) : project.title === "DevLens — AI Debugging Tool with Vision Pipeline" ? (
+                    <div className="relative h-48 xl:h-56 2xl:h-64 w-full group">
+                      <img
+                        src={devLensImages[devLensIndex]}
+                        alt={`DevLens Screenshot ${devLensIndex + 1}`}
+                        className="h-48 xl:h-56 2xl:h-64 w-full object-cover rounded-t-lg shadow-lg transition-all duration-500"
+                      />
+                      <button onClick={handleDevLensPrev} className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/70 rounded-full p-1 hover:bg-primary/80 transition-colors z-10">
+                        <span className="sr-only">Previous</span>
+                        &#8592;
+                      </button>
+                      <button onClick={handleDevLensNext} className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/70 rounded-full p-1 hover:bg-primary/80 transition-colors z-10">
+                        <span className="sr-only">Next</span>
+                        &#8594;
+                      </button>
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                        {devLensImages.map((_, i) => (
+                          <span key={i} className={`w-2 h-2 rounded-full ${i === devLensIndex ? 'bg-primary' : 'bg-muted-foreground/40'} transition-colors`}></span>
+                        ))}
+                      </div>
+                    </div>
+                  ) : project.title === "TickerPulse — AI-Powered Stock Sentiment Analysis & Trend Prediction Platform" ? (
                     <div className="relative h-48 xl:h-56 2xl:h-64 w-full group">
                       <img
                         src={tickerPulseImages[tickerIndex]}
@@ -380,10 +495,22 @@ const Projects = () => {
                     </ul>
                   </div>
 
-                  {/* Action Buttons - Hidden for TickerPulse project */}
-                  {project.title !== "TickerPulse — AI-Powered Stock Sentiment Analysis & Trend Prediction Platform" && (
-                    <div className="flex gap-2 pt-4 mt-auto">
-                      {project.title === "Student Attendance Monitoring System" ? (
+                  {/* Action Buttons */}
+                  {(project.github !== "#" || project.demo !== "#") && (
+                    <div className="flex flex-row flex-nowrap items-stretch gap-2 pt-4 mt-auto w-full">
+                      {project.title === "TickerPulse — AI-Powered Stock Sentiment Analysis & Trend Prediction Platform" ? (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full"
+                        >
+                          <Button variant="outline" size="sm" className="w-full group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
+                            <Github size={16} className="mr-2" />
+                            Code
+                          </Button>
+                        </a>
+                      ) : project.title === "Student Attendance Monitoring System" ? (
                         <div className="w-full flex justify-center">
                           <a
                             href="https://github.com/GouravBarnwal/Students-Attendance-Monitoring-and-Alert-Generation-System.git"
@@ -468,6 +595,31 @@ const Projects = () => {
                           >
                             <Button size="sm" className="w-full group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
                               <ExternalLink size={16} className="mr-2" />
+                              Demo
+                            </Button>
+                          </a>
+                        </>
+                      ) : project.github !== "#" ? (
+                        <>
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 min-w-0 basis-0"
+                          >
+                            <Button variant="outline" size="sm" className="w-full whitespace-nowrap px-2 sm:px-3 group-hover:border-primary group-hover:text-primary transition-all duration-300 animate-bounce-in">
+                              <Github size={16} className="mr-1.5 shrink-0" />
+                              Code
+                            </Button>
+                          </a>
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 min-w-0 basis-0"
+                          >
+                            <Button size="sm" className="w-full whitespace-nowrap px-2 sm:px-3 group-hover:bg-primary/90 group-hover:text-primary-foreground transition-all duration-300 animate-bounce-in delay-100">
+                              <ExternalLink size={16} className="mr-1.5 shrink-0" />
                               Demo
                             </Button>
                           </a>

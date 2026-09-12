@@ -309,32 +309,31 @@ function Scene3D() {
 
 const About = () => {
   const skillCategories = [
-    { name: 'Languages', shape: 'octahedron' as SkillShapeType, color: '#a259ff', skills: ['Java', 'Python', 'JavaScript', 'TypeScript'] },
-    { name: 'Backend', shape: 'box' as SkillShapeType, color: '#5f5fff', skills: ['FastAPI', 'Node.js', 'REST APIs', 'JWT Authentication', 'System Design', 'Scalable API Architecture', 'CI/CD Pipelines'] },
-    { name: 'Database', shape: 'cylinder' as SkillShapeType, color: '#00e0ff', skills: ['PostgreSQL', 'MongoDB', 'SQLAlchemy', 'Database Migrations'] },
-    { name: 'ML / AI', shape: 'icosahedron' as SkillShapeType, color: '#c084fc', skills: ['Scikit-learn', 'Pandas', 'NumPy', 'LLM APIs', 'Model Deployment', 'MLOps', 'Inference Optimization', 'LLM Evaluation', 'Data Pipelines'] },
-    { name: 'Front-end', shape: 'torus' as SkillShapeType, color: '#818cf8', skills: ['React', 'Tailwind CSS'] },
-    { name: 'Tools & Cloud', shape: 'sphere' as SkillShapeType, color: '#22d3ee', skills: ['Git', 'Docker', 'AWS', 'GitHub Actions', 'Postman', 'Streamlit', 'Linux'] },
+    { name: 'Computer Vision', shape: 'icosahedron' as SkillShapeType, color: '#c084fc', skills: ['OpenCV', 'PyTorch', 'Feature Matching', 'Image Retrieval', 'Image Processing', 'Anomaly Detection', 'Object Detection', 'Image Classification', 'OCR', 'SIFT', 'ORB', 'LoFTR', 'XFeat', 'DINOv2'] },
+    { name: 'Backend & Deployment', shape: 'box' as SkillShapeType, color: '#5f5fff', skills: ['FastAPI', 'Flask', 'REST APIs', 'Docker', 'Git', 'Linux'] },
+    { name: 'ML/DL', shape: 'octahedron' as SkillShapeType, color: '#a259ff', skills: ['Scikit-learn', 'NumPy', 'Pandas', 'CNNs', 'Transfer Learning', 'Feature Extraction', 'Model Evaluation'] },
+    { name: 'Frontend & Database', shape: 'torus' as SkillShapeType, color: '#818cf8', skills: ['React', 'Next.js', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'Firebase'] },
+    { name: 'Programming', shape: 'sphere' as SkillShapeType, color: '#22d3ee', skills: ['Python', 'C++', 'Java', 'JavaScript', 'TypeScript'] },
   ];
 
   const highlights = [
     { icon: Award, label: 'ISRO-IIRS Certified', detail: 'Geodata Processing using Python & ML' },
     { icon: Users, label: 'Google Student Ambassador', detail: 'Led 4 LLM events with 138+ attendees' },
-    { icon: Sparkles, label: 'LLM Research', detail: 'Multimodal benchmarking paper under peer review' },
-    { icon: Briefcase, label: 'Production Systems', detail: 'Backend systems serving 150+ active users' },
+    { icon: Sparkles, label: 'Computer Vision Research / LLM Research', detail: 'Feature-matching benchmarks and vision-language model evaluation' },
+    { icon: Briefcase, label: 'Production Systems', detail: 'FastAPI microservices, PostgreSQL backends, and deployed production APIs' },
   ];
 
   const experiences = [
     {
-      title: "AI Research Intern",
+      title: "Research (Computer Vision / LLM) Intern",
       company: "DRDO Young Scientist Laboratory (DYSL-AI)",
       duration: "03/2026 - Present",
       location: "Bengaluru, India",
       current: true,
       bullets: [
-        "Architected a multimodal video understanding pipeline for event recognition and counting — contributing to an LLM benchmarking paper currently under peer review.",
-        "Built a QA benchmark dataset with ground truth annotations to quantitatively measure LLM performance on video comprehension tasks.",
-        "Conducted LLM evaluation and model benchmarking across Gemini and GPT-4 on video QA tasks — compared accuracy, reasoning quality, and failure modes.",
+        "Built a feature-matching and image-retrieval benchmarking pipeline from scratch on TUM RGB-D (613 frames), evaluating nine algorithms (SIFT, ORB, SuperPoint+SuperGlue, DISK+LightGlue, ALIKED, XFeat, LoFTR, DeDoDe, RoMa) under rotation, scale, and low-texture conditions.",
+        "Conducted DINOv2 CLS-token cosine similarity analysis and identified LoFTR as the most robust and fastest performer under degraded conditions, adopted for downstream use.",
+        "Evaluated failure modes of text-to-video and vision-language models (Sora, Gemini, and others) across negation, numerical/counting, spatio-temporal, and causal reasoning prompts; extended testing to audio understanding using Whisper transcriptions.",
       ],
     },
     {
@@ -386,7 +385,7 @@ const About = () => {
           <h2 className="heading-secondary mb-4 drop-shadow-lg">About Me</h2>
           <div className="section-title-accent" />
           <p className="section-intro drop-shadow-md mt-6">
-            Backend &amp; AI/ML Engineer building production systems, conducting LLM research, and shipping full-stack products
+            Computer Vision &amp; Backend Engineer building AI research systems, production backend services, and full-stack products
           </p>
         </div>
 
@@ -424,10 +423,10 @@ const About = () => {
               <h3 className="subheading mb-5 text-accent-gradient">My Journey</h3>
               <div className="grid lg:grid-cols-2 gap-6 xl:gap-10">
                 <p className="text-body">
-                  Final-year CSE student at Government Engineering College, Ramgarh, with hands-on experience building production backend systems, conducting AI research at a DRDO government lab, and developing an AI-powered stock platform as part of a US-based product team.
+                  Final-year CSE student at Government Engineering College, Ramgarh, with hands-on experience conducting computer vision and AI research at a DRDO government lab, building production backend systems, and developing an AI-powered stock platform as part of a US-based product team.
                 </p>
                 <p className="text-body">
-                  I contribute to a multimodal LLM benchmarking paper under peer review, with strong expertise in backend engineering, REST API design, and applied ML — from FastAPI microservices and PostgreSQL to LLM evaluation pipelines and model deployment.
+                  I&apos;ve built and benchmarked computer vision pipelines evaluating nine state-of-the-art feature-matching algorithms, and evaluated failure modes of vision-language models like Sora and Gemini. Alongside this, I bring strong expertise in backend engineering and REST API design — from FastAPI microservices and PostgreSQL to full-stack systems built with React and modern deployment pipelines.
                 </p>
               </div>
             </CardContent>
@@ -583,7 +582,7 @@ const About = () => {
                     Dec 2022 – Aug 2026
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface border border-border">
-                    CGPA: <span className="text-primary font-semibold">7.5</span>
+                    CGPA: <span className="text-primary font-semibold">7.34/10</span>
                   </span>
                 </div>
               </div>

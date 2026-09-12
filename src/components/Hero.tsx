@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, MapPin, Check, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import React, { useEffect, useState, useRef, Suspense, useMemo } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -201,6 +202,9 @@ function Scene3D() {
   );
 }
 
+const HERO_BIO =
+  'Final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, with hands-on experience conducting computer vision and AI research at a DRDO government lab, building production backend systems, and developing full-stack applications with product teams. Skilled across computer vision pipelines, model benchmarking, and deployment — as well as backend engineering, REST API design, and full-stack development with FastAPI, PostgreSQL, and React.';
+
 const Hero = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const scrollToSection = (sectionId: string) => {
@@ -210,8 +214,9 @@ const Hero = () => {
     }
   };
   const subtitle = useTypewriter([
-    ['Full Stack Developer'],
-    ['AI/ML Engineer']
+    ['Computer Vision Engineer'],
+    ['Machine Learning Engineer'],
+    ['Backend Developer']
   ]);
 
   return (
@@ -233,19 +238,26 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-3 xl:gap-16 2xl:gap-24 items-start lg:items-center min-h-0 lg:min-h-[calc(100vh-6rem)] animate-fade-in">
           {/* Content */}
           <div className="space-y-3 xl:space-y-10 text-center lg:text-left order-2 lg:order-1">
-            <div className="space-y-1 xl:space-y-6">
-              <p className="text-base md:text-xl xl:text-2xl text-muted-foreground">Hi, I am</p>
-              <h1 className="heading-primary animated-gradient-text drop-shadow-lg">
-                Gourav Barnwal
-              </h1>
-              <h2 className="text-xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium animated-gradient-text min-h-[2rem] lg:min-h-[3rem] xl:min-h-[4rem] drop-shadow-lg">
-                {subtitle}
-              </h2>
+            <div className="space-y-2 xl:space-y-4 flex flex-col items-center lg:items-start">
+              <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-muted-foreground tracking-wide">
+                Hi, my name is
+              </p>
+              <p className="hero-name-text whitespace-nowrap">Gourav Barnwal</p>
+              <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-muted-foreground tracking-wide">
+                and I am a
+              </p>
+              <div className="hero-role-shell pt-1">
+                <h1 className="hero-role-heading">
+                  <span className="hero-role-text">{subtitle}</span>
+                  <span className="hero-role-cursor" aria-hidden="true">|</span>
+                </h1>
+                <div className="hero-role-accent" aria-hidden="true" />
+              </div>
             </div>
 
-            {/* Hero Image and Bio — mobile side by side */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 lg:hidden">
-              <div className="flex-shrink-0 relative">
+            {/* Hero Image and Bio — mobile */}
+            <div className="flex flex-col sm:flex-row items-stretch gap-4 lg:hidden">
+              <div className="flex-shrink-0 relative self-center">
                 <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-white/20 backdrop-blur-sm shadow-2xl overflow-hidden flex items-center justify-center bg-black/20">
                   <img
                     src="/imagesmine/Grv-prof-img.png"
@@ -254,14 +266,23 @@ const Hero = () => {
                   />
                 </div>
               </div>
-              <p className="text-body text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-center sm:text-left">
-Final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, passionate about building practical, real-world software solutions. Experienced in full-stack development and machine learning, with hands-on project and internship exposure in developing scalable applications and data-driven systems.            </p>
+              <Card className="card-neon border-primary/30 flex-1 relative z-10 backdrop-blur-sm">
+                <CardContent className="p-4 sm:p-5">
+                  <p className="text-body text-xs sm:text-sm md:text-base text-center sm:text-left">
+                    {HERO_BIO}
+                  </p>
+                </CardContent>
+              </Card>
             </div>
 
-            {/* Bio — desktop only */}
-            <p className="hidden lg:block text-body lg:text-lg xl:text-xl 2xl:text-2xl text-left">
-              Final-year B.Tech Computer Science student at Government Engineering College, Ramgarh, passionate about building practical, real-world software solutions. Experienced in full-stack development and machine learning, with hands-on project and internship exposure in developing scalable applications and data-driven systems.
-            </p>
+            {/* Bio — desktop */}
+            <Card className="hidden lg:block card-neon border-primary/30 relative z-10 backdrop-blur-sm">
+              <CardContent className="p-6 xl:p-8">
+                <p className="text-body lg:text-lg xl:text-xl 2xl:text-2xl text-left">
+                  {HERO_BIO}
+                </p>
+              </CardContent>
+            </Card>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 xl:gap-6 justify-center lg:justify-start">
@@ -305,7 +326,7 @@ Final-year B.Tech Computer Science student at Government Engineering College, Ra
                 <Linkedin className="w-4 h-4 lg:w-6 lg:h-6 xl:w-7 xl:h-7" />
               </a>
               <a 
-                href="https://www.instagram.com/grv.b_1419"
+                href="https://www.instagram.com/grv_143_"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 lg:p-4 bg-surface hover:bg-primary/10 rounded-lg transition-colors hover-float animate-social-fade delay-150"
@@ -351,7 +372,7 @@ Final-year B.Tech Computer Science student at Government Engineering College, Ra
             {/* Location */}
             <div className="flex items-center gap-2 text-muted-foreground text-base lg:text-lg xl:text-xl justify-center lg:justify-start">
               <MapPin className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6" />
-              <span>Dhanbad, Jharkhand, India- 828111</span>
+              <span>Bengaluru, Karnataka, India - 560076</span>
             </div>
           </div>
 

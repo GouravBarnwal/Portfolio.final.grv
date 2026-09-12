@@ -1,5 +1,4 @@
-import { Heart, Github, Linkedin, Mail, Check, MapPin } from 'lucide-react';
-import { Instagram } from 'lucide-react';
+import { Github, Linkedin, Mail, Check, MapPin, Instagram } from 'lucide-react';
 import { useState } from 'react';
 
 const Footer = () => {
@@ -15,14 +14,18 @@ const Footer = () => {
 
   return (
     <footer className="bg-surface border-t border-border">
-      <div className="container-custom py-8 xl:py-12">
-        <div className="grid md:grid-cols-3 gap-8 xl:gap-12">
+      <div className="container-custom py-10 xl:py-14">
+        <div className="grid md:grid-cols-3 gap-10 xl:gap-14 items-start">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-xl xl:text-2xl 2xl:text-3xl font-bold text-primary">Gourav Barnwal</h3>
-            <p className="text-muted-foreground text-sm xl:text-base 2xl:text-lg">
-              Full Stack Developer passionate about creating innovative web solutions and modern applications with clean, scalable code.
+            <h3 className="text-xl xl:text-2xl 2xl:text-3xl font-bold animated-gradient-text">Gourav Barnwal</h3>
+            <p className="text-sm xl:text-base text-muted-foreground leading-relaxed">
+              Computer Vision · Machine Learning · Backend Engineer
             </p>
+            <div className="flex items-start gap-2 text-sm xl:text-base text-muted-foreground">
+              <MapPin className="w-4 h-4 xl:w-5 xl:h-5 text-primary shrink-0 mt-0.5" />
+              <span>Bengaluru, Karnataka, India - 560076</span>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -39,13 +42,14 @@ const Footer = () => {
 
           {/* Connect */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-base xl:text-lg 2xl:text-xl">Let's Connect</h4>
+            <h4 className="font-semibold text-base xl:text-lg 2xl:text-xl">Let&apos;s Connect</h4>
             <div className="flex gap-3 xl:gap-4">
               <a 
                 href="https://github.com/GouravBarnwal" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-2 xl:p-3 bg-background rounded-lg hover:bg-primary/10 transition-colors"
+                aria-label="GitHub"
               >
                 <Github className="w-5 h-5 xl:w-6 xl:h-6" />
               </a>
@@ -54,11 +58,12 @@ const Footer = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-2 xl:p-3 bg-background rounded-lg hover:bg-primary/10 transition-colors"
+                aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5 xl:w-6 xl:h-6" />
               </a>
               <a 
-                href="https://www.instagram.com/grv.b_1419"
+                href="https://www.instagram.com/grv_143_"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 xl:p-3 bg-background rounded-lg hover:bg-primary/10 transition-colors"
@@ -79,23 +84,24 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <p className="text-muted-foreground text-sm xl:text-base 2xl:text-lg">
-              Feel free to reach out for collaborations or just a friendly chat about technology!
+            <p className="text-muted-foreground text-sm xl:text-base leading-relaxed">
+              Open to collaborations in computer vision, backend systems, and full-stack product work.
             </p>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border mt-8 xl:mt-10 pt-6 xl:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm xl:text-base 2xl:text-lg flex items-center gap-1">
-            © {currentYear} Gourav Barnwal
+        <div className="border-t border-border mt-10 xl:mt-12 pt-6 xl:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="text-muted-foreground text-sm xl:text-base">
+            © {currentYear} Gourav Barnwal. All rights reserved.
           </p>
-          <div className="text-muted-foreground text-sm xl:text-base 2xl:text-lg">
-            <div className="flex items-center gap-3 animate-fade-in delay-300">
-              <MapPin className="w-5 h-5 xl:w-6 xl:h-6 text-primary animate-icon-bounce" />
-              <span className="font-medium text-primary">Dhanbad, Jharkhand, India - 828111</span> 
-            </div>
-          </div>
+          <a
+            href="/imagesmine/Gourav-Barnwal-Resume.pdf"
+            download="Gourav-Barnwal-Resume.pdf"
+            className="text-sm xl:text-base text-primary hover:text-accent transition-colors font-medium"
+          >
+            Download Resume
+          </a>
         </div>
       </div>
     </footer>

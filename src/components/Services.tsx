@@ -1,4 +1,4 @@
-import { Code, Globe, Server, Database, Brain, GraduationCap } from 'lucide-react';
+import { Globe, Server, Brain, ScanEye } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from "framer-motion";
 import React, { useRef, Suspense, useMemo } from 'react';
@@ -142,14 +142,14 @@ function Scene3D() {
 const Services = () => {
   const services = [
     {
-      icon: Code,
-      title: "Frontend Development",
-      description: "Creating modern, responsive user interfaces with cutting-edge frontend technologies and design best practices.",
+      icon: ScanEye,
+      title: "Computer Vision & AI Research",
+      description: "Building and benchmarking computer vision systems — from feature matching and image retrieval to anomaly detection and model evaluation.",
       features: [
-        "Responsive website development (React, Tailwind, JavaScript)",
-        "Landing page & portfolio website creation",
-        "UI cloning and redesign",
-        "Dashboard development (admin panels, analytics UI)"
+        "Visual anomaly detection & quality inspection pipelines",
+        "Feature matching / image retrieval benchmarking",
+        "Vision-language model evaluation",
+        "OCR & document understanding pipelines"
       ]
     },
     {
@@ -188,16 +188,6 @@ const Services = () => {
         "Sentiment analysis systems",
         "Dataset cleaning & feature engineering"
       ]
-    },
-    {
-      icon: GraduationCap,
-      title: "Student / College Projects",
-      description: "Comprehensive project guidance and development support for academic and final-year projects.",
-      features: [
-        "Final year project guidance",
-        "ML-based academic projects",
-        "Full-stack project development support"
-      ]
     }
   ];
 
@@ -222,7 +212,7 @@ const Services = () => {
         <div className="text-center mb-16 xl:mb-20 animate-fade-in">
           <h2 className="heading-secondary mb-4 drop-shadow-lg">Specialized Services</h2>
           <p className="section-intro drop-shadow-md">
-            Expert development services spanning frontend, full-stack, backend, AI/ML solutions, and academic project support
+            Expert development services spanning computer vision, full-stack, backend, and AI/ML solutions
           </p>
         </div>
 

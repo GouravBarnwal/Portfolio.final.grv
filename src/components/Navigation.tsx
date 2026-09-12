@@ -60,7 +60,7 @@ const Navigation = () => {
               className="w-8 h-8 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full border-2 border-primary shadow-orange-glow group-hover:scale-110 group-hover:shadow-lg transition-transform duration-300"
             />
             <span className="text-sm lg:text-2xl xl:text-3xl font-bold text-primary tracking-tight group-hover:text-accent transition-colors duration-300 hidden sm:block">
-              Gourav's Portfolio
+              Gourav Barnwal | Computer Vision & Backend Engineer
             </span>
             <span className="text-sm font-bold text-primary tracking-tight group-hover:text-accent transition-colors duration-300 sm:hidden">
               Portfolio
