@@ -99,18 +99,62 @@
   /* Mobile fallback animated background */
   @media (max-width: 767px) {
     .mobile-fallback-bg {
-      background: linear-gradient(135deg, 
-        hsl(235 16% 10%) 0%, 
-        hsl(265 90% 60% / 0.05) 50%, 
-        hsl(235 16% 10%) 100%);
-      background-size: 400% 400%;
+      background: 
+        linear-gradient(135deg, 
+          hsl(235 16% 10%) 0%, 
+          hsl(265 90% 60% / 0.03) 50%, 
+          hsl(235 16% 10%) 100%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          hsl(265 90% 60% / 0.02) 2px,
+          hsl(265 90% 60% / 0.02) 4px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          hsl(285 80% 65% / 0.02) 2px,
+          hsl(285 80% 65% / 0.02) 4px
+        );
+      background-size: 400% 400%, 20px 20px, 20px 20px;
       animation: mobile-gradient-shift 15s ease infinite;
+      position: relative;
+    }
+    
+    .mobile-fallback-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 30%, hsl(265 90% 60% / 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, hsl(285 80% 65% / 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, hsl(200 90% 65% / 0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    
+    .mobile-fallback-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(45deg, transparent 48%, hsl(265 90% 60% / 0.1) 49%, hsl(265 90% 60% / 0.1) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, hsl(285 80% 65% / 0.08) 49%, hsl(285 80% 65% / 0.08) 51%, transparent 52%);
+      background-size: 30px 30px;
+      pointer-events: none;
+      animation: scanline 8s linear infinite;
     }
   }
 
   @keyframes mobile-gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    0%, 100% { background-position: 0% 50%, 0 0, 0 0; }
+    50% { background-position: 100% 50%, 0 0, 0 0; }
+  }
+  
+  @keyframes scanline {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 30px 30px, 30px 30px; }
   }
 }
 
