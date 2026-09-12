@@ -17,6 +17,7 @@ const WireframeWave: React.FC<WireframeWaveProps> = ({
 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [isMobile, setIsMobile] = React.useState(false);
+  const frameCounter = React.useRef(0);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -30,6 +31,7 @@ const WireframeWave: React.FC<WireframeWaveProps> = ({
   }, []);
 
   const segments = isMobile ? mobileSegments : desktopSegments;
+  const frameSkip = isMobile ? 2 : 1; // Skip every other frame on mobile for performance
 
   const geometry = useMemo(() => {
     const geo = new THREE.PlaneGeometry(20, 20, segments, segments);
@@ -47,6 +49,13 @@ const WireframeWave: React.FC<WireframeWaveProps> = ({
 
   useFrame((state) => {
     if (meshRef.current) {
+      frameCounter.current++;
+      
+      // Skip frames on mobile to reduce computational load
+      if (isMobile && frameCounter.current % frameSkip !== 0) {
+        return;
+      }
+      
       const time = state.clock.getElapsedTime();
       const positions = geometry.attributes.position;
       
@@ -70,10 +79,7 @@ const WireframeWave: React.FC<WireframeWaveProps> = ({
   });
 
   return (
-    <>
-      <color attach="background" args={[color]} />
-      <mesh ref={meshRef} geometry={geometry} material={material} rotation={[-Math.PI / 2.5, 0, 0]} />
-    </>
+    <mesh ref={meshRef} geometry={geometry} material={material} rotation={[-Math.PI / 2.5, 0, 0]} />
   );
 };
 

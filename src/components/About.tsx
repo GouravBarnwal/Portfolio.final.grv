@@ -1,59 +1,11 @@
 import { GraduationCap, MapPin, Calendar, Award, Sparkles, Users, Briefcase } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from "framer-motion";
-import React, { useRef, Suspense, useMemo, useState, useEffect, useCallback } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { OrbitControls, Float } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { Suspense, useRef, useState, useEffect, useCallback } from 'react';
 import LazyCanvas from '@/components/LazyCanvas';
 import WireframeWave from '@/components/WireframeWave';
 
-type SkillShapeType = 'octahedron' | 'box' | 'cylinder' | 'icosahedron' | 'torus' | 'sphere';
-
-function SkillMeshGeometry({ shape }: { shape: SkillShapeType }) {
-  switch (shape) {
-    case 'octahedron':
-      return <octahedronGeometry args={[0.55, 0]} />;
-    case 'box':
-      return <boxGeometry args={[0.7, 0.7, 0.7]} />;
-    case 'cylinder':
-      return <cylinderGeometry args={[0.45, 0.45, 0.9, 16]} />;
-    case 'icosahedron':
-      return <icosahedronGeometry args={[0.5, 0]} />;
-    case 'torus':
-      return <torusGeometry args={[0.4, 0.15, 16, 32]} />;
-    case 'sphere':
-      return <sphereGeometry args={[0.5, 24, 24]} />;
-  }
-}
-
-function MiniSkillMesh({ shape, color }: { shape: SkillShapeType; color: string }) {
-  const ref = useRef<THREE.Mesh>(null);
-
-  useFrame((_, delta) => {
-    if (ref.current) {
-      ref.current.rotation.y += delta * 1.2;
-      ref.current.rotation.x += delta * 0.4;
-    }
-  });
-
-  return (
-    <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.4}>
-      <mesh ref={ref}>
-        <SkillMeshGeometry shape={shape} />
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.35}
-          metalness={0.65}
-          roughness={0.25}
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function SkillIcon3D({ color }: { shape: SkillShapeType; color: string }) {
+function SkillIcon3D({ color }: { color: string }) {
   return (
     <div 
       className="skill-icon-3d w-11 h-11 xl:w-12 xl:h-12 rounded-xl shrink-0 flex items-center justify-center"
@@ -71,63 +23,6 @@ function SkillIcon3D({ color }: { shape: SkillShapeType; color: string }) {
         }}
       />
     </div>
-  );
-}
-
-function FloatingSkillShape({
-  position,
-  shape,
-  color,
-  scale = 1,
-  speed = 1,
-}: {
-  position: [number, number, number];
-  shape: SkillShapeType;
-  color: string;
-  scale?: number;
-  speed?: number;
-}) {
-  const ref = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (ref.current) {
-      ref.current.rotation.x = state.clock.elapsedTime * 0.25 * speed;
-      ref.current.rotation.y = state.clock.elapsedTime * 0.35 * speed;
-    }
-  });
-
-  return (
-    <Float speed={speed * 1.4} rotationIntensity={0.5} floatIntensity={0.7}>
-      <mesh ref={ref} position={position} scale={scale}>
-        <SkillMeshGeometry shape={shape} />
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.25}
-          metalness={0.5}
-          roughness={0.35}
-          wireframe
-          transparent
-          opacity={0.55}
-        />
-      </mesh>
-    </Float>
-  );
-}
-
-function SkillsBackdropScene() {
-  return (
-    <>
-      <ambientLight intensity={0.35} />
-      <pointLight position={[4, 3, 6]} intensity={0.9} color="#a259ff" />
-      <pointLight position={[-5, -2, 4]} intensity={0.6} color="#00e0ff" />
-      <FloatingSkillShape position={[-4.5, 1.2, -2]} shape="icosahedron" color="#a259ff" scale={1.1} />
-      <FloatingSkillShape position={[4.8, -0.8, -3]} shape="torus" color="#00e0ff" scale={1.3} speed={1.2} />
-      <FloatingSkillShape position={[-2.5, -1.5, -1.5]} shape="box" color="#5f5fff" scale={0.9} />
-      <FloatingSkillShape position={[2.8, 1.8, -2.5]} shape="octahedron" color="#c084fc" scale={1} speed={0.9} />
-      <FloatingSkillShape position={[0, -2, -3.5]} shape="cylinder" color="#818cf8" scale={0.85} speed={1.1} />
-      <FloatingSkillShape position={[-5.5, -0.5, -4]} shape="sphere" color="#22d3ee" scale={1.15} speed={0.8} />
-    </>
   );
 }
 
@@ -176,129 +71,6 @@ function SkillTiltCard({
   );
 }
 
-// 3D Scene Components (same as Hero)
-function ApproachingDot() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [position, setPosition] = React.useState(() => ({
-    x: (Math.random() - 0.5) * 80,
-    y: (Math.random() - 0.5) * 60,
-    z: -50
-  }));
-  
-  useFrame(() => {
-    if (meshRef.current) {
-      setPosition(prev => ({
-        ...prev,
-        z: prev.z + 0.8
-      }));
-      
-      if (position.z > 10) {
-        setPosition({
-          x: (Math.random() - 0.5) * 80,
-          y: (Math.random() - 0.5) * 60,
-          z: -50
-        });
-      }
-    }
-  });
-  
-  return (
-    <mesh ref={meshRef} position={[position.x, position.y, position.z]}>
-      <sphereGeometry args={[0.04, 8, 8]} />
-      <meshBasicMaterial color="#ffffff" transparent opacity={0.6} />
-    </mesh>
-  );
-}
-
-function ApproachingDots() {
-  const dots = useMemo(() => Array.from({ length: 30 }, (_, i) => (
-    <ApproachingDot key={i} />
-  )), []);
-  
-  return <>{dots}</>;
-}
-
-function GalaxyStars() {
-  const starsData = useMemo(() => {
-    const starsCount = 5000; // Reduced for mobile performance
-    const positions = new Float32Array(starsCount * 3);
-    const colors = new Float32Array(starsCount * 3);
-    const sizes = new Float32Array(starsCount);
-    
-    for (let i = 0; i < starsCount; i++) {
-      const i3 = i * 3;
-      positions[i3] = (Math.random() - 0.5) * 150;
-      positions[i3 + 1] = (Math.random() - 0.5) * 150;
-      positions[i3 + 2] = (Math.random() - 0.5) * 150;
-      
-      const starType = Math.random();
-      const brightness = 0.6 + Math.random() * 0.4; // Much higher base brightness
-      
-      if (starType < 0.7) {
-        colors[i3] = brightness;
-        colors[i3 + 1] = brightness;
-        colors[i3 + 2] = brightness;
-      } else if (starType < 0.85) {
-        colors[i3] = brightness;
-        colors[i3 + 1] = brightness * 0.95;
-        colors[i3 + 2] = brightness * 0.85;
-      } else {
-        colors[i3] = brightness * 0.85;
-        colors[i3 + 1] = brightness * 0.95;
-        colors[i3 + 2] = brightness;
-      }
-      
-      sizes[i] = Math.random() * 0.1 + 0.05; // Smaller star sizes for mobile
-    }
-    
-    return { positions, colors, sizes };
-  }, []);
-
-  const pointsRef = useRef<THREE.Points>(null);
-  const starsCount = 5000; // Reduced for mobile performance
-  
-  useFrame((state) => {
-    if (pointsRef.current) {
-      const time = state.clock.getElapsedTime();
-      
-      // Rotate the entire star field
-      pointsRef.current.rotation.y = time * 0.05;
-      pointsRef.current.rotation.x = Math.sin(time * 0.02) * 0.1;
-    }
-  });
-  
-  return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={starsCount}
-          array={starsData.positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          count={starsCount}
-          array={starsData.colors}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-size"
-          count={starsCount}
-          array={starsData.sizes}
-          itemSize={1}
-        />
-      </bufferGeometry>
-      <pointsMaterial 
-        size={0.08} 
-        sizeAttenuation 
-        transparent 
-        vertexColors
-      />
-    </points>
-  );
-}
-
 function Scene3D() {
   return (
     <>
@@ -309,11 +81,11 @@ function Scene3D() {
 
 const About = () => {
   const skillCategories = [
-    { name: 'Computer Vision', shape: 'icosahedron' as SkillShapeType, color: '#c084fc', skills: ['OpenCV', 'PyTorch', 'Feature Matching', 'Image Retrieval', 'Image Processing', 'Anomaly Detection', 'Object Detection', 'Image Classification', 'OCR', 'SIFT', 'ORB', 'LoFTR', 'XFeat', 'DINOv2'] },
-    { name: 'Backend & Deployment', shape: 'box' as SkillShapeType, color: '#5f5fff', skills: ['FastAPI', 'Flask', 'REST APIs', 'Docker', 'Git', 'Linux'] },
-    { name: 'ML/DL', shape: 'octahedron' as SkillShapeType, color: '#a259ff', skills: ['Scikit-learn', 'NumPy', 'Pandas', 'CNNs', 'Transfer Learning', 'Feature Extraction', 'Model Evaluation'] },
-    { name: 'Frontend & Database', shape: 'torus' as SkillShapeType, color: '#818cf8', skills: ['React', 'Next.js', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'Firebase'] },
-    { name: 'Programming', shape: 'sphere' as SkillShapeType, color: '#22d3ee', skills: ['Python', 'C++', 'Java', 'JavaScript', 'TypeScript'] },
+    { name: 'Computer Vision', color: '#c084fc', skills: ['OpenCV', 'PyTorch', 'Feature Matching', 'Image Retrieval', 'Image Processing', 'Anomaly Detection', 'Object Detection', 'Image Classification', 'OCR', 'SIFT', 'ORB', 'LoFTR', 'XFeat', 'DINOv2'] },
+    { name: 'Backend & Deployment', color: '#5f5fff', skills: ['FastAPI', 'Flask', 'REST APIs', 'Docker', 'Git', 'Linux'] },
+    { name: 'ML/DL', color: '#a259ff', skills: ['Scikit-learn', 'NumPy', 'Pandas', 'CNNs', 'Transfer Learning', 'Feature Extraction', 'Model Evaluation'] },
+    { name: 'Frontend & Database', color: '#818cf8', skills: ['React', 'Next.js', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'Firebase'] },
+    { name: 'Programming', color: '#22d3ee', skills: ['Python', 'C++', 'Java', 'JavaScript', 'TypeScript'] },
   ];
 
   const highlights = [
@@ -436,18 +208,6 @@ const About = () => {
         {/* Skills grid with 3D backdrop */}
         <div className="mb-14 xl:mb-20 relative">
           <div className="skills-3d-panel relative rounded-3xl overflow-hidden border border-primary/15">
-            {/* Floating 3D shapes behind skills */}
-            <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
-              <LazyCanvas
-                camera={{ position: [0, 0, 8], fov: 55 }}
-                gl={{ alpha: true, antialias: true }}
-                dpr={[1, 1.5]}
-              >
-                <Suspense fallback={null}>
-                  <SkillsBackdropScene />
-                </Suspense>
-              </LazyCanvas>
-            </div>
             <div className="absolute inset-0 z-[1] bg-gradient-to-br from-black/75 via-black/55 to-primary/10 pointer-events-none" />
 
             <div className="relative z-10 p-6 md:p-8 xl:p-12">
@@ -468,7 +228,7 @@ const About = () => {
                     <SkillTiltCard className="h-full">
                       <div className="skill-category-card skill-category-card-3d h-full">
                         <div className="flex items-center gap-3 mb-4">
-                          <SkillIcon3D shape={category.shape} color={category.color} />
+                          <SkillIcon3D color={category.color} />
                           <h4 className="font-semibold text-base xl:text-xl text-foreground">{category.name}</h4>
                         </div>
                         <div className="flex flex-wrap gap-2 xl:gap-2.5" style={{ perspective: '600px' }}>

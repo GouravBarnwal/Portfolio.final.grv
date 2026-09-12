@@ -1,12 +1,9 @@
 import { Github, Linkedin, Mail, MapPin, Check, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import React, { useEffect, useState, useRef, Suspense, useMemo } from 'react';
+import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { useFrame } from '@react-three/fiber';
-import { OrbitControls, Float, Stars } from '@react-three/drei';
-import * as THREE from 'three';
 import LazyCanvas from '@/components/LazyCanvas';
 import WireframeWave from '@/components/WireframeWave';
 
@@ -67,131 +64,6 @@ function useTypewriter(lines: string[][], speed = 40, lineDelay = 2000) {
   }, [display, currentLine, currentWord, isDeleting, isLineComplete, lines, speed, lineDelay]);
 
   return display;
-}
-
-// 3D Scene Components
-function ApproachingDot() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [position, setPosition] = useState(() => ({
-    x: (Math.random() - 0.5) * 80,
-    y: (Math.random() - 0.5) * 60,
-    z: -50
-  }));
-  
-  useFrame(() => {
-    if (meshRef.current) {
-      // Move dot towards viewer (approaching effect)
-      setPosition(prev => ({
-        ...prev,
-        z: prev.z + 0.8
-      }));
-      
-      // Reset when too close
-      if (position.z > 10) {
-        setPosition({
-          x: (Math.random() - 0.5) * 80,
-          y: (Math.random() - 0.5) * 60,
-          z: -50
-        });
-      }
-    }
-  });
-  
-  return (
-    <mesh ref={meshRef} position={[position.x, position.y, position.z]}>
-      <sphereGeometry args={[0.04, 8, 8]} />
-      <meshBasicMaterial color="#ffffff" transparent opacity={0.6} />
-    </mesh>
-  );
-}
-
-function ApproachingDots() {
-  const dots = useMemo(() => Array.from({ length: 30 }, (_, i) => (
-    <ApproachingDot key={i} />
-  )), []);
-  
-  return <>{dots}</>;
-}
-
-function GalaxyStars() {
-  const starsData = useMemo(() => {
-    const starsCount = 5000; // Further reduced for better mobile performance
-    const positions = new Float32Array(starsCount * 3);
-    const colors = new Float32Array(starsCount * 3);
-    const sizes = new Float32Array(starsCount);
-    
-    for (let i = 0; i < starsCount; i++) {
-      const i3 = i * 3;
-      positions[i3] = (Math.random() - 0.5) * 150;
-      positions[i3 + 1] = (Math.random() - 0.5) * 150;
-      positions[i3 + 2] = (Math.random() - 0.5) * 150;
-      
-      const starType = Math.random();
-      const brightness = 0.6 + Math.random() * 0.4; // Much higher base brightness
-      
-      if (starType < 0.7) {
-        colors[i3] = brightness;
-        colors[i3 + 1] = brightness;
-        colors[i3 + 2] = brightness;
-      } else if (starType < 0.85) {
-        colors[i3] = brightness;
-        colors[i3 + 1] = brightness * 0.95;
-        colors[i3 + 2] = brightness * 0.85;
-      } else {
-        colors[i3] = brightness * 0.85;
-        colors[i3 + 1] = brightness * 0.95;
-        colors[i3 + 2] = brightness;
-      }
-      
-      sizes[i] = Math.random() * 0.1 + 0.05; // Smaller star sizes for mobile
-    }
-    
-    return { positions, colors, sizes };
-  }, []);
-
-  const pointsRef = useRef<THREE.Points>(null);
-  const starsCount = 5000; // Further reduced for better mobile performance
-  
-  useFrame((state) => {
-    if (pointsRef.current) {
-      const time = state.clock.getElapsedTime();
-      
-      // Rotate the entire star field
-      pointsRef.current.rotation.y = time * 0.05;
-      pointsRef.current.rotation.x = Math.sin(time * 0.02) * 0.1;
-    }
-  });
-
-  return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={starsCount}
-          array={starsData.positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          count={starsCount}
-          array={starsData.colors}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-size"
-          count={starsCount}
-          array={starsData.sizes}
-          itemSize={1}
-        />
-      </bufferGeometry>
-      <pointsMaterial 
-        size={0.08} 
-        sizeAttenuation 
-        transparent 
-        vertexColors
-      />
-    </points>
-  );
 }
 
 function Scene3D() {
