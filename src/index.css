@@ -95,6 +95,23 @@
   #root {
     @apply w-full min-h-screen;
   }
+
+  /* Mobile fallback animated background */
+  @media (max-width: 767px) {
+    .mobile-fallback-bg {
+      background: linear-gradient(135deg, 
+        hsl(235 16% 10%) 0%, 
+        hsl(265 90% 60% / 0.05) 50%, 
+        hsl(235 16% 10%) 100%);
+      background-size: 400% 400%;
+      animation: mobile-gradient-shift 15s ease infinite;
+    }
+  }
+
+  @keyframes mobile-gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 }
 
 @layer components {

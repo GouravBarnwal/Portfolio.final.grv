@@ -78,7 +78,7 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding bg-black overflow-hidden relative">
       {/* 3D Galaxy Background */}
-      <div className="absolute inset-0 z-0 bg-black">
+      <div className="absolute inset-0 z-0 bg-black mobile-fallback-bg">
         <LazyCanvas
           camera={{ position: [0, 0, 5], fov: 75 }}
           className="w-full h-full"
