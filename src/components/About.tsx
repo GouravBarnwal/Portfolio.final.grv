@@ -135,9 +135,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding bg-black overflow-hidden relative">
+    <section id="about" className="section-padding bg-black overflow-hidden relative mobile-fallback-bg">
       {/* 3D Galaxy Background */}
-      <div className="absolute inset-0 z-0 bg-black mobile-fallback-bg">
+      <div className="absolute inset-0 z-0 bg-black">
         <LazyCanvas
           camera={{ position: [0, 0, 5], fov: 75 }}
           className="w-full h-full"

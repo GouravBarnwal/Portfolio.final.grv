@@ -66,9 +66,9 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="section-padding bg-black overflow-hidden relative">
+    <section id="services" className="section-padding bg-black overflow-hidden relative mobile-fallback-bg">
       {/* 3D Galaxy Background */}
-      <div className="absolute inset-0 z-0 bg-black mobile-fallback-bg">
+      <div className="absolute inset-0 z-0 bg-black">
         <LazyCanvas
           camera={{ position: [0, 0, 5], fov: 75 }}
           className="w-full h-full"
