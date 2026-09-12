@@ -50,19 +50,26 @@ const Navigation = () => {
   useEffect(() => {
     const handleScrollSpy = () => {
       const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+      const scrollPosition = window.scrollY + 200; // Increased offset for navbar height
 
-      for (let i = sections.length - 1; i >= 0; i--) {
+      // Find the section that's currently in view
+      for (let i = 0; i < sections.length; i++) {
         const section = sections[i];
         if (section) {
           const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
+          const sectionBottom = sectionTop + section.offsetHeight;
           
-          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          // Check if the scroll position is within this section
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             setActiveSection(navItems[i].id);
-            break;
+            return;
           }
         }
+      }
+      
+      // Default to home if no section is detected (at top of page)
+      if (window.scrollY < 100) {
+        setActiveSection('home');
       }
     };
 
