@@ -14,7 +14,7 @@ const sectionVariants = {
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ backgroundColor: '#000000' }}>
       <Navigation />
       <motion.div
         initial="hidden"
