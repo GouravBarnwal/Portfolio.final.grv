@@ -9,7 +9,6 @@ const LazyCanvas: React.FC<LazyCanvasProps> = ({ children, ...props }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
-  const [contextLost, setContextLost] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,23 +39,15 @@ const LazyCanvas: React.FC<LazyCanvasProps> = ({ children, ...props }) => {
 
   return (
     <div ref={canvasRef} className="w-full h-full bg-black">
-      {isVisible && !contextLost && (
+      {isVisible && (
         <Canvas
           {...props}
           onCreated={(state) => {
             // WebGL context-loss recovery
             if (state.gl && state.gl.domElement) {
-              const handleContextLost = (e: Event) => {
+              state.gl.domElement.addEventListener('webglcontextlost', (e) => {
                 e.preventDefault();
-                setContextLost(true);
-              };
-              
-              const handleContextRestored = () => {
-                setContextLost(false);
-              };
-
-              state.gl.domElement.addEventListener('webglcontextlost', handleContextLost);
-              state.gl.domElement.addEventListener('webglcontextrestored', handleContextRestored);
+              });
             }
             // Call any existing onCreated prop if provided
             if (props.onCreated) {
