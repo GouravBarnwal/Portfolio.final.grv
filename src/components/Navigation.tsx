@@ -48,46 +48,40 @@ const Navigation = () => {
 
   // Scroll spy to update active section based on scroll position
   useEffect(() => {
-    const handleScrollSpy = () => {
-      const sections = navItems.map(item => document.getElementById(item.id));
-      const windowHeight = window.innerHeight;
-      const navbarHeight = 80; // Approximate navbar height
-      const viewportMiddle = window.scrollY + windowHeight / 2;
+    const sections = navItems.map(item => document.getElementById(item.id));
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Detect when section is in middle of viewport
+      threshold: 0
+    };
 
-      let maxVisibility = 0;
-      let activeId = 'home';
-
-      // Find the section with the most visibility in the viewport
-      sections.forEach((section, index) => {
-        if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionBottom = sectionTop + section.offsetHeight;
-          const sectionHeight = section.offsetHeight;
-
-          // Calculate how much of this section is visible in the viewport
-          const viewportTop = window.scrollY + navbarHeight;
-          const viewportBottom = window.scrollY + windowHeight;
-
-          const visibleTop = Math.max(sectionTop, viewportTop);
-          const visibleBottom = Math.min(sectionBottom, viewportBottom);
-          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-
-          // Calculate percentage of section that's visible
-          const visibilityPercentage = visibleHeight / sectionHeight;
-
-          if (visibilityPercentage > maxVisibility) {
-            maxVisibility = visibilityPercentage;
-            activeId = navItems[index].id;
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          if (sectionId && navItems.find(item => item.id === sectionId)) {
+            setActiveSection(sectionId);
           }
         }
       });
-
-      setActiveSection(activeId);
     };
 
-    window.addEventListener('scroll', handleScrollSpy);
-    handleScrollSpy(); // Initial check
-    return () => window.removeEventListener('scroll', handleScrollSpy);
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach(section => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      sections.forEach(section => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
   }, [navItems]);
 
   return (
