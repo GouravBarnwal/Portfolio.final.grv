@@ -135,9 +135,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding bg-black overflow-hidden relative" style={{ backgroundColor: '#000000' }}>
+    <section id="about" className="section-padding bg-black overflow-hidden relative">
       {/* 3D Galaxy Background */}
-      <div className="absolute inset-0 z-0 bg-black" style={{ backgroundColor: '#000000' }}>
+      <div className="absolute inset-0 z-0 bg-black">
         <LazyCanvas
           camera={{ position: [0, 0, 5], fov: 75 }}
           className="w-full h-full"
