@@ -50,27 +50,39 @@ const Navigation = () => {
   useEffect(() => {
     const handleScrollSpy = () => {
       const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 200; // Increased offset for navbar height
+      const windowHeight = window.innerHeight;
+      const navbarHeight = 80; // Approximate navbar height
+      const viewportMiddle = window.scrollY + windowHeight / 2;
 
-      // Find the section that's currently in view
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
+      let maxVisibility = 0;
+      let activeId = 'home';
+
+      // Find the section with the most visibility in the viewport
+      sections.forEach((section, index) => {
         if (section) {
           const sectionTop = section.offsetTop;
           const sectionBottom = sectionTop + section.offsetHeight;
-          
-          // Check if the scroll position is within this section
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            setActiveSection(navItems[i].id);
-            return;
+          const sectionHeight = section.offsetHeight;
+
+          // Calculate how much of this section is visible in the viewport
+          const viewportTop = window.scrollY + navbarHeight;
+          const viewportBottom = window.scrollY + windowHeight;
+
+          const visibleTop = Math.max(sectionTop, viewportTop);
+          const visibleBottom = Math.min(sectionBottom, viewportBottom);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+          // Calculate percentage of section that's visible
+          const visibilityPercentage = visibleHeight / sectionHeight;
+
+          if (visibilityPercentage > maxVisibility) {
+            maxVisibility = visibilityPercentage;
+            activeId = navItems[index].id;
           }
         }
-      }
-      
-      // Default to home if no section is detected (at top of page)
-      if (window.scrollY < 100) {
-        setActiveSection('home');
-      }
+      });
+
+      setActiveSection(activeId);
     };
 
     window.addEventListener('scroll', handleScrollSpy);
