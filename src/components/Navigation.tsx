@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -15,6 +15,14 @@ const Navigation = () => {
     { id: 'services', label: 'Services' },
     { id: 'contact', label: 'Contact' },
   ];
+
+  const scrollToSection = useCallback((sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+    }
+  }, []);
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -38,13 +46,30 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
-    }
-  };
+  // Scroll spy to update active section based on scroll position
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      const sections = navItems.map(item => document.getElementById(item.id));
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            setActiveSection(navItems[i].id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollSpy);
+    handleScrollSpy(); // Initial check
+    return () => window.removeEventListener('scroll', handleScrollSpy);
+  }, [navItems]);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b transition-transform duration-300 ${
@@ -116,7 +141,9 @@ const Navigation = () => {
                     scrollToSection(item.id);
                     setIsMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left py-3 px-4 rounded-lg transition-all duration-300 hover:bg-surface hover:scale-105 active:scale-95"
+                  className={`block w-full text-left py-3 px-4 rounded-lg transition-all duration-300 hover:bg-surface hover:scale-105 active:scale-95 ${
+                    activeSection === item.id ? 'bg-primary/20 text-primary font-semibold' : ''
+                  }`}
                 >
                   {item.label}
                 </button>
